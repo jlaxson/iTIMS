@@ -1,0 +1,286 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		9D6FC66C138C4B84006F3AE0 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9D6FC66B138C4B84006F3AE0 /* UIKit.framework */; };
+		9D6FC66E138C4B84006F3AE0 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9D6FC66D138C4B84006F3AE0 /* Foundation.framework */; };
+		9D6FC670138C4B84006F3AE0 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9D6FC66F138C4B84006F3AE0 /* CoreGraphics.framework */; };
+		9D6FC676138C4B84006F3AE0 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 9D6FC674138C4B84006F3AE0 /* InfoPlist.strings */; };
+		9D6FC679138C4B84006F3AE0 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D6FC678138C4B84006F3AE0 /* main.m */; };
+		9D6FC67C138C4B84006F3AE0 /* iTIMSAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D6FC67B138C4B84006F3AE0 /* iTIMSAppDelegate.m */; };
+		9D6FC67F138C4B84006F3AE0 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9D6FC67D138C4B84006F3AE0 /* MainWindow.xib */; };
+		9D6FC682138C4B84006F3AE0 /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D6FC681138C4B84006F3AE0 /* RootViewController.m */; };
+		9D6FC685138C4B84006F3AE0 /* RootViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9D6FC683138C4B84006F3AE0 /* RootViewController.xib */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		9D6FC667138C4B84006F3AE0 /* iTIMS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iTIMS.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		9D6FC66B138C4B84006F3AE0 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		9D6FC66D138C4B84006F3AE0 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		9D6FC66F138C4B84006F3AE0 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		9D6FC673138C4B84006F3AE0 /* iTIMS-Info.plist */ = {isa = PBXFileReference; path = "iTIMS-Info.plist"; sourceTree = "<group>"; };
+		9D6FC675138C4B84006F3AE0 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		9D6FC677138C4B84006F3AE0 /* iTIMS-Prefix.pch */ = {isa = PBXFileReference; path = "iTIMS-Prefix.pch"; sourceTree = "<group>"; };
+		9D6FC678138C4B84006F3AE0 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		9D6FC67A138C4B84006F3AE0 /* iTIMSAppDelegate.h */ = {isa = PBXFileReference; path = iTIMSAppDelegate.h; sourceTree = "<group>"; };
+		9D6FC67B138C4B84006F3AE0 /* iTIMSAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = iTIMSAppDelegate.m; sourceTree = "<group>"; };
+		9D6FC67E138C4B84006F3AE0 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainWindow.xib; sourceTree = "<group>"; };
+		9D6FC680138C4B84006F3AE0 /* RootViewController.h */ = {isa = PBXFileReference; path = RootViewController.h; sourceTree = "<group>"; };
+		9D6FC681138C4B84006F3AE0 /* RootViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RootViewController.m; sourceTree = "<group>"; };
+		9D6FC684138C4B84006F3AE0 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/RootViewController.xib; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		9D6FC664138C4B84006F3AE0 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9D6FC66C138C4B84006F3AE0 /* UIKit.framework in Frameworks */,
+				9D6FC66E138C4B84006F3AE0 /* Foundation.framework in Frameworks */,
+				9D6FC670138C4B84006F3AE0 /* CoreGraphics.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		9D6FC65C138C4B84006F3AE0 = {
+			isa = PBXGroup;
+			children = (
+				9D6FC671138C4B84006F3AE0 /* iTIMS */,
+				9D6FC66A138C4B84006F3AE0 /* Frameworks */,
+				9D6FC668138C4B84006F3AE0 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		9D6FC668138C4B84006F3AE0 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				9D6FC667138C4B84006F3AE0 /* iTIMS.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		9D6FC66A138C4B84006F3AE0 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				9D6FC66B138C4B84006F3AE0 /* UIKit.framework */,
+				9D6FC66D138C4B84006F3AE0 /* Foundation.framework */,
+				9D6FC66F138C4B84006F3AE0 /* CoreGraphics.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		9D6FC671138C4B84006F3AE0 /* iTIMS */ = {
+			isa = PBXGroup;
+			children = (
+				9D6FC67A138C4B84006F3AE0 /* iTIMSAppDelegate.h */,
+				9D6FC67B138C4B84006F3AE0 /* iTIMSAppDelegate.m */,
+				9D6FC67D138C4B84006F3AE0 /* MainWindow.xib */,
+				9D6FC680138C4B84006F3AE0 /* RootViewController.h */,
+				9D6FC681138C4B84006F3AE0 /* RootViewController.m */,
+				9D6FC683138C4B84006F3AE0 /* RootViewController.xib */,
+				9D6FC672138C4B84006F3AE0 /* Supporting Files */,
+			);
+			path = iTIMS;
+			sourceTree = "<group>";
+		};
+		9D6FC672138C4B84006F3AE0 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				9D6FC673138C4B84006F3AE0 /* iTIMS-Info.plist */,
+				9D6FC674138C4B84006F3AE0 /* InfoPlist.strings */,
+				9D6FC677138C4B84006F3AE0 /* iTIMS-Prefix.pch */,
+				9D6FC678138C4B84006F3AE0 /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		9D6FC666138C4B84006F3AE0 /* iTIMS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 9D6FC688138C4B84006F3AE0 /* Build configuration list for PBXNativeTarget "iTIMS" */;
+			buildPhases = (
+				9D6FC663138C4B84006F3AE0 /* Sources */,
+				9D6FC664138C4B84006F3AE0 /* Frameworks */,
+				9D6FC665138C4B84006F3AE0 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = iTIMS;
+			productName = iTIMS;
+			productReference = 9D6FC667138C4B84006F3AE0 /* iTIMS.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		9D6FC65E138C4B84006F3AE0 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				ORGANIZATIONNAME = "SOS Technologies, Inc";
+			};
+			buildConfigurationList = 9D6FC661138C4B84006F3AE0 /* Build configuration list for PBXProject "iTIMS" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 9D6FC65C138C4B84006F3AE0;
+			productRefGroup = 9D6FC668138C4B84006F3AE0 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				9D6FC666138C4B84006F3AE0 /* iTIMS */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		9D6FC665138C4B84006F3AE0 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9D6FC676138C4B84006F3AE0 /* InfoPlist.strings in Resources */,
+				9D6FC67F138C4B84006F3AE0 /* MainWindow.xib in Resources */,
+				9D6FC685138C4B84006F3AE0 /* RootViewController.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		9D6FC663138C4B84006F3AE0 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9D6FC679138C4B84006F3AE0 /* main.m in Sources */,
+				9D6FC67C138C4B84006F3AE0 /* iTIMSAppDelegate.m in Sources */,
+				9D6FC682138C4B84006F3AE0 /* RootViewController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		9D6FC674138C4B84006F3AE0 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				9D6FC675138C4B84006F3AE0 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		9D6FC67D138C4B84006F3AE0 /* MainWindow.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				9D6FC67E138C4B84006F3AE0 /* en */,
+			);
+			name = MainWindow.xib;
+			sourceTree = "<group>";
+		};
+		9D6FC683138C4B84006F3AE0 /* RootViewController.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				9D6FC684138C4B84006F3AE0 /* en */,
+			);
+			name = RootViewController.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		9D6FC686138C4B84006F3AE0 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = "DEBUG=1";
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvmgcc42;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		9D6FC687138C4B84006F3AE0 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_VERSION = com.apple.compilers.llvmgcc42;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				SDKROOT = iphoneos;
+			};
+			name = Release;
+		};
+		9D6FC689138C4B84006F3AE0 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "iTIMS/iTIMS-Prefix.pch";
+				INFOPLIST_FILE = "iTIMS/iTIMS-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		9D6FC68A138C4B84006F3AE0 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "iTIMS/iTIMS-Prefix.pch";
+				INFOPLIST_FILE = "iTIMS/iTIMS-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				VALIDATE_PRODUCT = YES;
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		9D6FC661138C4B84006F3AE0 /* Build configuration list for PBXProject "iTIMS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9D6FC686138C4B84006F3AE0 /* Debug */,
+				9D6FC687138C4B84006F3AE0 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		9D6FC688138C4B84006F3AE0 /* Build configuration list for PBXNativeTarget "iTIMS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9D6FC689138C4B84006F3AE0 /* Debug */,
+				9D6FC68A138C4B84006F3AE0 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 9D6FC65E138C4B84006F3AE0 /* Project object */;
+}

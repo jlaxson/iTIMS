@@ -1,0 +1,209 @@
+<html>
+<head>
+    <style>
+        body {
+            padding: 1in;
+            margin: 0;
+            width: 6.5in;
+        }
+        
+        body, table {
+          font-family: "Helvetica", sans-serif;
+          font-size: 10pt;
+        }
+        
+        .right {
+          float: right;
+        }
+        
+        #container {
+          border: 4px solid black;
+        }
+        
+        .dro {
+          float: right;
+          width: 3in;
+        }
+        
+        #info {
+          border-bottom: 2px solid black;
+          padding: 0;
+        }
+        
+        #assets {
+          border-bottom: 2px solid black;
+        }
+        
+        #assetsTable {
+          width: 100%;
+        }
+        
+        #assetsTable .subitem {
+          padding-left: 2em;
+        }
+        
+        th {
+          padding: 10px;
+        }
+        
+        td {
+          padding: 5px;
+        }
+        
+        .desc {
+          border-right: 1px solid black;
+          padding-left: 1em;
+        }
+        
+        .issued {
+          text-align: center;
+          border-right: 1px solid black;
+        }
+        
+        .returned {
+          text-align: center;
+        }
+        
+        #assetsTable tr:last-child td, th {
+          border-bottom: 1px solid black;
+        }
+        
+        #commBox {
+          padding: 1em;
+        }
+        
+        #footer * {
+          font-size: 8pt;
+        }
+        
+        #footer {
+          margin: 0;
+          padding: 0;
+        }
+        
+        #legal {
+          font-style: italic;
+          awidth: 70%;
+          padding: 1em;
+          margin: 0;
+          position: relative;
+        }
+        
+        #signoutTable {
+          float: right;
+          width: 1.75in;
+          margin-left: 1em;
+          height: 8em;
+        }
+        
+        #signature {
+          width: 4in;
+        }
+        
+        #signatureBlank {
+          border-bottom: 1px solid black;
+          height: 3em;
+          margin-bottom: 1em;
+        }
+        
+        #header {
+          font-weight: bold;
+          font-size: 12pt;
+          padding-bottom: 5px;
+          vertical-align: bottom;
+        }
+        
+        .big {
+          font-size: 16pt;
+        }
+        
+        #functionLine {
+          border-top: 1px solid black;
+          margin: 0;
+        }
+        
+        #functionLine > span {
+          display: inline-block;
+          border-left: 1px solid black;
+          margin: 0;
+          padding-left: 5px;
+          padding-top: 5px;
+          padding-bottom: 5px;
+          width: 20%;
+        }
+        
+        #functionLine > span:first-child {
+          border-left: none;
+        }
+        
+        #nameLine {
+          padding: 5px;
+        }
+        
+    </style>
+</head>
+<body>
+    
+    <div id="header">
+        <img id="logo" src="RedCross.gif" />
+        <span class="right big">Technology Equipment Loan Record</span>
+    </div>
+    <div id="container">
+    <div id="info">
+        <div id="nameLine">
+            <span>Recipient Name: {{assignment.name}}</span>
+            <span class="dro">DRO: {{droName}}</span>
+        </div>
+        <div id="functionLine">
+            <span>Agency: ARC</span>
+            <span>Function: {{assignment.activity}}</span>
+            <span>Position: {{assignment.position}}</span>
+            <span>Location: {{assignment.location}}</span>
+        </div>
+    </div>
+    <div id="assets">
+        <table id="assetsTable" cellspacing="0" cellpadding="0">
+            <tr>
+                <th class="desc">Description</th>
+                <th class="issued">Issued</th>
+                <th class="returned">Returned</th>
+            </tr>
+            <tr>
+                <td class="desc">{{assignment.item.type.desc}}: {{assignment.item.referenceNumber}}</td>
+                <td class="issued">{{assignment.checkoutTime | date_format: "MM'/'d"}}</td>
+                <td class="returned">{{assignment.returnTime | date_format: "MM'/'d"}}</td>
+            </tr>
+            {% for accessory in assignment.item.type.accessories %}
+            <tr>
+                <td class="subitem desc">&#10003; {{accessory}}</td>
+                <td class="issued"></td>
+                <td class="returned"></td>
+            </tr>
+            {% /for %}
+        </table>
+        <div id="commBox">
+            Comm Box: {{assignment.item.commBox.referenceNumber}}
+        </div>
+    </div>
+    <div id="footer">
+        <table id="signoutTable" cellspacing="0" cellpadding="0">
+            <tr>
+                <td class="desc">Issued By</td>
+                <td>Returned By</td>
+            </tr>
+            <tr>
+                <td class="desc">{{assignment.checkoutBy}}</td>
+                <td>{{assignment.returnBy}}</td>
+            </tr>
+        </table>
+        <p id="legal">
+          I understand that the above described property is LOANED and not to be transferred to anyone else or sold by me.  I agree to give the property good care and to return it including all accessories when requested by the American Red Cross.  I understand that telephone and pager airtime usage records will be reviewed and that I will use equipment for American Red Cross business use only.
+        </p>
+    </div>
+    </div>
+    <div id="signature">
+        <div id="signatureBlank"></div>
+        <span>Signature Of Recipient</span><span class="right" style="width: 1in">Date</span>
+    </div>
+</body>
+</html>

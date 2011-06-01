@@ -9,6 +9,27 @@
 #endif
 
 #ifdef __OBJC__
-    #import <UIKit/UIKit.h>
-    #import <Foundation/Foundation.h>
+
+
+
+#import <UIKit/UIKit.h>
+#import <Foundation/Foundation.h>
+#import <AudioToolbox/AudioToolbox.h>
+#import <MessageUI/MessageUI.h>
+#import <AVFoundation/AVFoundation.h>
+#import <CoreData/CoreData.h>
+
+#import "PGSQLKit.h"
+
+#import "ZBarSDK.h"
+
+#import "iTIMSAppDelegate.h"
+#import "TIMSObject.h"
+
+#import "Item.h"
+#import "Case.h"
+#import "Assignment.h"
+#import "Type.h"
+#import "DROInfo.h"
+
 #endif

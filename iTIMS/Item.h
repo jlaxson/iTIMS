@@ -28,8 +28,8 @@
 @end
 
 @interface Item (CoreDataGeneratedAccessors)
-- (void)addAssignmentsObject:(NSManagedObject *)value;
-- (void)removeAssignmentsObject:(NSManagedObject *)value;
+- (void)addAssignmentsObject:(Assignment *)value;
+- (void)removeAssignmentsObject:(Assignment *)value;
 - (void)addAssignments:(NSSet *)value;
 - (void)removeAssignments:(NSSet *)value;
 

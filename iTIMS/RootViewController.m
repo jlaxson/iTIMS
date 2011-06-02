@@ -10,6 +10,7 @@
 #import "ScannerViewController.h"
 #import "ItemViewController.h"
 #import "iTIMSAppDelegate.h"
+#import "TIMSDatasource.h"
 
 #import <CoreData/CoreData.h>
 
@@ -122,6 +123,8 @@
 - (void)processItem:(Item *)item activity:(NSString *)activity location:(NSString *)loc
 {
     iTIMSAppDelegate *app = [[UIApplication sharedApplication] delegate];
+    id<TIMSDatasource> datasource = app.datasource;
+    
     item.showOnReport = [NSNumber numberWithBool:YES];
     
     if (item.currentAssignment) {
@@ -132,24 +135,21 @@
         
         ass.returnTime = [NSDate date];
         ass.returnBy = @"DST";
+        [datasource saveAssignment:ass];
     }
     
-    Assignment *new = [NSEntityDescription insertNewObjectForEntityForName:@"Assignment" inManagedObjectContext:app.managedObjectContext];
+    Assignment *new = [datasource createAssignment];
 
     new.item = item;
     new.checkoutTime = [NSDate date];
-    new.checkoutBy = @"DST";
+    new.checkoutBy = [[NSUserDefaults standardUserDefaults] stringForKey:@"UserInitials"];
     new.location = loc;
     new.name = activity;
     new.activity = activity;
     new.position = @"";
     
-    
-    
-    NSLog(@"%@", new);
-    
-    [app saveContext];
-    [app.managedObjectContext refreshObject:item mergeChanges:NO];
+    [item addAssignmentsObject:new];
+    [datasource saveAssignment:new];
 }
 
 - (void)runReport
@@ -183,7 +183,7 @@
             currentActivity = item.activity;
         }
         
-        [report appendFormat:@"\t%@\t%@\t%@\n", item.item.referenceNumber, item.item.desc, item.item.entity.name];
+        //[report appendFormat:@"\t%@\t%@\t%@\n", item.item.referenceNumber, item.item.desc, item.item.entity.name];
     }
     
     NSLog(@"%@", report);
@@ -211,7 +211,7 @@
                 vc.navigationItem.title = @"Scan";
                 vc.scanAction = ^(ScannerViewController *svc, NSString *barcode) {
                     iTIMSAppDelegate *app = [[UIApplication sharedApplication] delegate];
-                    Item *item = [app itemByReference:barcode];
+                    Item *item = [app.datasource findItemByReference:barcode];
                     
                     if (item) {
                         ItemViewController *vc = [[ItemViewController alloc] initWithStyle:UITableViewStyleGrouped];
@@ -228,7 +228,7 @@
                 vc.navigationItem.title = @"Comm Box";
                 vc.scanAction = ^(ScannerViewController *svc, NSString *barcode) {
                     iTIMSAppDelegate *app = [[UIApplication sharedApplication] delegate];
-                    Item *item = [app itemByReference:barcode];
+                    Item *item = [app.datasource findItemByReference:barcode];
                     
                     if (item) {
                         [svc showBanner:item.commBox.referenceNumber subtitle:item.referenceNumber duration:2.0];
@@ -247,7 +247,7 @@
                 vc.navigationItem.title = @"Count";
                 vc.scanAction = ^(ScannerViewController *svc, NSString *barcode) {
                     iTIMSAppDelegate *app = [[UIApplication sharedApplication] delegate];
-                    Item *item = [app itemByReference:barcode];
+                    Item *item = [app.datasource findItemByReference:barcode];
                     
                     if (item) {
                         [self processItem:item activity:vc.activity location:vc.location];

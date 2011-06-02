@@ -28,6 +28,8 @@
 @dynamic commBox;
 @dynamic showOnReport;*/
 
+//@synthesize currentAssignment;
+/*
 - (Assignment *)currentAssignment
 {
     NSArray *ret = [self primitiveCurrentAssignment];
@@ -41,6 +43,14 @@
     }
     
     return [ret lastObject];
+}*/
+
+- (Assignment *)currentAssignment {
+    for (Assignment *ass in self.assignments) {
+        if (ass.returnTime == nil && ass.checkoutTime != nil)
+            return ass;
+    }
+    return nil;
 }
 
 - (NSArray *)sortedAssignments {
@@ -55,4 +65,12 @@
     return _sortedCache;
 }
 
+- (void)addAssignmentsObject:(Assignment *)value {
+    NSMutableSet *s = [NSMutableSet setWithSet:self.assignments];
+    [s addObject:value];
+    self.assignments = [NSSet setWithSet:s];
+    
+    [_sortedCache release];
+    _sortedCache = nil;
+}
 @end

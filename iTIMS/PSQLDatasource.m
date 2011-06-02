@@ -56,7 +56,28 @@
     
     results = [_connection open:[NSString stringWithFormat:@"SELECT * FROM \"History\" WHERE \"Record Number\"=%@", item.rowNumber]];
     
+    record = [results moveFirst];
+    
     while (![results isEOF]) {
+        
+        Assignment *ass = [[Assignment alloc] init];
+        
+        ass.rowNumber = [[record fieldByName:@"History ID"] asNumber];
+        ass.name = [[record fieldByName:@"Responsible Individual"] asString];
+        ass.position = [[record fieldByName:@"Position"] asString];
+        ass.activity = [[record fieldByName:@"Function"] asString];
+        ass.location = [[record fieldByName:@"Location"] asString];
+        ass.checkoutTime = [[record fieldByName:@"Date of Issue"] asDate];
+        ass.checkoutBy = [[record fieldByName:@"Initials Issued"] asString];
+        ass.returnTime = [[record fieldByName:@"Date Returned"] asDate];
+        ass.returnBy = [[record fieldByName:@"Initials Returned"] asString];
+        ass.comment = [[record fieldByName:@"Comments"] asString];
+
+        ass.item = item;
+        
+        [assignments addObject:ass];
+        [ass release];
+        
         record = [results moveNext];
     }
     
@@ -90,5 +111,64 @@
     return item;
 }
 
+- (NSString *)escapeText:(NSString *)text {
+    if (text == nil) return @"";
+    
+    return [text stringByReplacingOccurrencesOfString:@"'" withString:@"\\'"];
+}
+
+- (NSString *)formatDateForSQL:(NSDate *)d {
+    if (d == nil) return @"NULL";
+    
+    return [NSString stringWithFormat:@"'%@'", d];
+}
+
+- (void)saveAssignment:(Assignment *)assignment
+{
+    NSString *query;
+    if (assignment.rowNumber == nil) {
+        query = [NSString stringWithFormat:
+                 @"INSERT INTO \"History\" (\"Record Number\", \"Function\", \"Responsible Individual\", \"Location\", \"Position\", \"Date of Issue\", \"Initials Issued\", \"Date Returned\", \"Initials Returned\", \"Comments\") VALUES (%@, '%@', '%@', '%@', '%@', %@, '%@', %@, '%@', '%@')",
+                 assignment.item.rowNumber, 
+                 [self escapeText:assignment.activity], 
+                 [self escapeText:assignment.name], 
+                 [self escapeText:assignment.location], 
+                 [self escapeText:assignment.position], 
+                 [self formatDateForSQL:assignment.checkoutTime], 
+                 [self escapeText:assignment.checkoutBy], 
+                 [self formatDateForSQL:assignment.returnTime], 
+                 [self escapeText:assignment.returnBy], 
+                 [self escapeText:assignment.comment]];
+        NSLog(@"%@", query);
+        [_connection execCommand:query];
+        
+        PGSQLRecordset *results = [_connection open:@"SELECT currval('seq_history_historyid')"];
+        [results moveFirst];
+        assignment.rowNumber = [[results fieldByIndex:0] asNumber];
+    } else {
+        query = [NSString stringWithFormat:@"UPDATE \"History\" SET \"Function\"='%@',  \"Responsible Individual\"='%@', \"Location\"='%@',  \"Position\"='%@', \"Date of Issue\"=%@, \"Initials Issued\"='%@', \"Date Returned\"=%@, \"Initials Returned\"='%@', \"Comments\"='%@' WHERE \"History ID\"=%@ ",
+                 [self escapeText:assignment.activity],
+                 [self escapeText:assignment.name],
+                 [self escapeText:assignment.location],
+                 [self escapeText:assignment.position],
+                 [self formatDateForSQL:assignment.checkoutTime],
+                 [self escapeText:assignment.checkoutBy],
+                 [self formatDateForSQL:assignment.returnTime],
+                 [self escapeText:assignment.returnBy],
+                 [self escapeText:assignment.comment],
+                 assignment.rowNumber];
+        
+        [_connection execCommand:query];
+    }
+}
+
+- (Assignment *)createAssignment
+{
+    return [[[Assignment alloc] init] autorelease];
+}
+
+- (void)saveItem:(Item *)item {
+    
+}
 
 @end

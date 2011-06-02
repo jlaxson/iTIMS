@@ -1,30 +1,42 @@
 //
-//  ItemLocationViewController.m
+//  ItemPositionViewController.m
 //  iTIMS
 //
 //  Created by John Laxson on 5/25/11.
 //  Copyright 2011 SOS Technologies, Inc. All rights reserved.
 //
 
-#import "ItemLocationViewController.h"
+#import "ItemActivityViewController.h"
+
 #import "LocationViewController.h"
 
-@implementation ItemLocationViewController
+@implementation ItemActivityViewController
 
-@synthesize completedAction;
+@synthesize group, activity, completedAction;
+
+- (id)initWithCompletionHandler:(ActivityCompletionHandler)handler
+{
+    self = [self initWithStyle:UITableViewStyleGrouped];
+    
+    self.completedAction = handler;
+    
+    return self;
+}
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
     self = [super initWithStyle:style];
     if (self) {
-        locations = [[NSArray alloc] initWithContentsOfURL:[[NSBundle mainBundle] URLForResource:@"Locations" withExtension:@"plist"]];
+        positions = [[NSDictionary alloc] initWithContentsOfURL:[[NSBundle mainBundle] URLForResource:@"Activities" withExtension:@"plist"]];
+        groups = [[positions allKeys] copy];
     }
     return self;
 }
 
 - (void)dealloc
 {
-    [locations release];
+    [positions release];
+    [groups release];
     [super dealloc];
 }
 
@@ -86,14 +98,12 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    // Return the number of sections.
-    return 1;
+    return [groups count];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    // Return the number of rows in the section.
-    return [locations count];
+    return [[positions objectForKey:[groups objectAtIndex:section]] count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -106,17 +116,34 @@
     }
     
     // Configure the cell...
-    cell.textLabel.text = [locations objectAtIndex:indexPath.row];
+    NSArray *g = [positions objectForKey:[groups objectAtIndex:indexPath.section]];
+    cell.textLabel.text = [g objectAtIndex:indexPath.row];
+    
+    if ([[groups objectAtIndex:indexPath.section] isEqualToString:self.group] && 
+        [cell.textLabel.text isEqualToString:self.activity]) {
+        cell.accessoryType = UITableViewCellAccessoryCheckmark;
+    } else {
+        cell.accessoryType = UITableViewCellAccessoryNone;
+    }
     
     return cell;
+}
+
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
+{
+    return [groups objectAtIndex:section];
 }
 
 #pragma mark - Table view delegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    self.group = [groups objectAtIndex:indexPath.section];
+    self.activity = [[positions objectForKey:self.group] objectAtIndex:indexPath.row];
+    
+    NSString *fmt = [NSString stringWithFormat:@"%@-%@", self.group, self.activity];
     if (self.completedAction) {
-        self.completedAction(self, [locations objectAtIndex:indexPath.row]);
+        self.completedAction(self, fmt);
     }
     
     [self.navigationController popViewControllerAnimated:YES];

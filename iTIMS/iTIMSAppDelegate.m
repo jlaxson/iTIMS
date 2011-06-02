@@ -8,7 +8,7 @@
 
 #import "iTIMSAppDelegate.h"
 #import "CSVParser.h"
-
+#import "ItemViewController.h"
 #import "PSQLDatasource.h"
 
 #define RESET_CD 0
@@ -24,22 +24,29 @@
 @synthesize managedObjectModel=__managedObjectModel;
 @synthesize persistentStoreCoordinator=__persistentStoreCoordinator;
 
+@synthesize datasource, droInfo;
+
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    PSQLDatasource *ds = [[PSQLDatasource alloc] init];
-    DROInfo *info = [ds loadDROInfo];
-    Item *item = [ds findItemByReference:@"571-205-3330"];
-    NSLog(@"%@", info);
+    self.datasource = [[PSQLDatasource alloc] init];
+    self.droInfo = [self.datasource loadDROInfo];
     
     // Override point for customization after application launch.
     // Add the navigation controller's view to the window and display.
     self.window.rootViewController = self.navigationController;
     [self.window makeKeyAndVisible];
     
+    [[NSUserDefaults standardUserDefaults] registerDefaults:[NSDictionary dictionaryWithObject:@"IT" forKey:@"UserInitials"]];
+    
 #if RESET_CD
     [self loadData];
 #endif
-    
+#if TARGET_IPHONE_SIMULATOR 
+    ItemViewController *vc = [[ItemViewController alloc] initWithStyle:UITableViewStyleGrouped];
+    Item *item = [self.datasource findItemByReference:@"571-205-3330"];
+    vc.item = item;
+    [self.navigationController pushViewController:vc animated:YES];
+#endif
     return YES;
 }
 
@@ -253,7 +260,7 @@
     
     return d;
 }
-
+/*
 - (void)loadData
 {
     NSError *e;
@@ -359,7 +366,7 @@
 
     [self saveContext];
 }
-
+*/
 - (id)itemByReference:(NSString *)ref {
     NSFetchRequest *fetch = [self.managedObjectModel fetchRequestFromTemplateWithName:@"ItemByReference" substitutionVariables:[NSDictionary dictionaryWithObject:ref forKey:@"refNumber"]];
     NSArray *results = [self.managedObjectContext executeFetchRequest:fetch error:nil];

@@ -13,6 +13,6 @@
     NSArray *locations;
 }
 
-@property (retain) LocationViewController *locationViewController;;
+@property (copy) void (^completedAction)(ItemLocationViewController *vc, NSString *location);
 
 @end

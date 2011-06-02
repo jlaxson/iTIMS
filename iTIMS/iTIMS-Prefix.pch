@@ -19,12 +19,12 @@
 #import <AVFoundation/AVFoundation.h>
 #import <CoreData/CoreData.h>
 
-#import "PGSQLKit.h"
-
 #import "ZBarSDK.h"
 
+#import "PGSQLKit.h"
+#import "TIMSDatasource.h"
+
 #import "iTIMSAppDelegate.h"
-#import "TIMSObject.h"
 
 #import "Item.h"
 #import "Case.h"

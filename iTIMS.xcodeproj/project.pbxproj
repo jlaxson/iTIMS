@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		9D0D278E138D9DE400D92A37 /* LocationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D0D278D138D9DE400D92A37 /* LocationViewController.m */; };
-		9D0D2797138DA49D00D92A37 /* ItemPositionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D0D2796138DA49D00D92A37 /* ItemPositionViewController.m */; };
+		9D0D2797138DA49D00D92A37 /* ItemActivityViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D0D2796138DA49D00D92A37 /* ItemActivityViewController.m */; };
 		9D0D279A138DA4B200D92A37 /* ItemLocationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D0D2799138DA4B200D92A37 /* ItemLocationViewController.m */; };
 		9D0D279D138DA4C900D92A37 /* ItemAreaViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D0D279C138DA4C900D92A37 /* ItemAreaViewController.m */; };
 		9D1F57C51393FD9B001E79EF /* Locations.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9D1F57C41393FD9B001E79EF /* Locations.plist */; };
@@ -52,6 +52,8 @@
 		9D6FC6AE138C536D006F3AE0 /* Activities.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9D6FC6AD138C536D006F3AE0 /* Activities.plist */; };
 		9D6FC6B2138C5426006F3AE0 /* ScannerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D6FC6B0138C5426006F3AE0 /* ScannerViewController.m */; };
 		9D6FC6B3138C5426006F3AE0 /* ScannerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9D6FC6B1138C5426006F3AE0 /* ScannerViewController.xib */; };
+		9D7F5B7C13973F9F00DE519E /* NewAssignmentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D7F5B7B13973F9E00DE519E /* NewAssignmentViewController.m */; };
+		9D7F5B7F1397E72200DE519E /* TextTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D7F5B7E1397E72200DE519E /* TextTableCell.m */; };
 		9D8E1DFD138D77DF0028556F /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9D8E1DF8138D77DF0028556F /* AVFoundation.framework */; settings = {ATTRIBUTES = (Required, ); }; };
 		9D8E1DFE138D77DF0028556F /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9D8E1DF9138D77DF0028556F /* CoreMedia.framework */; };
 		9D8E1DFF138D77DF0028556F /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9D8E1DFA138D77DF0028556F /* CoreVideo.framework */; };
@@ -64,7 +66,6 @@
 		9DA0832813905EE900BC489A /* Item.m in Sources */ = {isa = PBXBuildFile; fileRef = 9DA0832713905EE900BC489A /* Item.m */; };
 		9DA0832E139156C600BC489A /* AssignmentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9DA0832D139156C500BC489A /* AssignmentViewController.m */; };
 		9DD966131395F2FB00D85C2F /* DROInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 9DD966121395F2FB00D85C2F /* DROInfo.m */; };
-		9DD966161395F7BF00D85C2F /* TIMSObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 9DD966151395F7BF00D85C2F /* TIMSObject.m */; };
 		9DD966591396C37B00D85C2F /* PGSQLColumn.m in Sources */ = {isa = PBXBuildFile; fileRef = 9DD9663F1396C37B00D85C2F /* PGSQLColumn.m */; };
 		9DD9665A1396C37B00D85C2F /* PGSQLConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 9DD966411396C37B00D85C2F /* PGSQLConnection.m */; };
 		9DD9665B1396C37B00D85C2F /* PGSQLConnectionInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 9DD966431396C37B00D85C2F /* PGSQLConnectionInfo.m */; };
@@ -78,8 +79,8 @@
 /* Begin PBXFileReference section */
 		9D0D278C138D9DE400D92A37 /* LocationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocationViewController.h; sourceTree = "<group>"; };
 		9D0D278D138D9DE400D92A37 /* LocationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocationViewController.m; sourceTree = "<group>"; };
-		9D0D2795138DA49D00D92A37 /* ItemPositionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItemPositionViewController.h; sourceTree = "<group>"; };
-		9D0D2796138DA49D00D92A37 /* ItemPositionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ItemPositionViewController.m; sourceTree = "<group>"; };
+		9D0D2795138DA49D00D92A37 /* ItemActivityViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItemActivityViewController.h; sourceTree = "<group>"; };
+		9D0D2796138DA49D00D92A37 /* ItemActivityViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ItemActivityViewController.m; sourceTree = "<group>"; };
 		9D0D2798138DA4B100D92A37 /* ItemLocationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItemLocationViewController.h; sourceTree = "<group>"; };
 		9D0D2799138DA4B200D92A37 /* ItemLocationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ItemLocationViewController.m; sourceTree = "<group>"; };
 		9D0D279B138DA4C900D92A37 /* ItemAreaViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItemAreaViewController.h; sourceTree = "<group>"; };
@@ -172,6 +173,10 @@
 		9D6FC6AF138C5426006F3AE0 /* ScannerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScannerViewController.h; sourceTree = "<group>"; };
 		9D6FC6B0138C5426006F3AE0 /* ScannerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScannerViewController.m; sourceTree = "<group>"; };
 		9D6FC6B1138C5426006F3AE0 /* ScannerViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ScannerViewController.xib; sourceTree = "<group>"; };
+		9D7F5B7A13973F9E00DE519E /* NewAssignmentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewAssignmentViewController.h; sourceTree = "<group>"; };
+		9D7F5B7B13973F9E00DE519E /* NewAssignmentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewAssignmentViewController.m; sourceTree = "<group>"; };
+		9D7F5B7D1397E72200DE519E /* TextTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextTableCell.h; sourceTree = "<group>"; };
+		9D7F5B7E1397E72200DE519E /* TextTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TextTableCell.m; sourceTree = "<group>"; };
 		9D8E1DF8138D77DF0028556F /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		9D8E1DF9138D77DF0028556F /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
 		9D8E1DFA138D77DF0028556F /* CoreVideo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreVideo.framework; path = System/Library/Frameworks/CoreVideo.framework; sourceTree = SDKROOT; };
@@ -189,8 +194,6 @@
 		9DD9660D1395EFC500D85C2F /* TIMSDatasource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TIMSDatasource.h; sourceTree = "<group>"; };
 		9DD966111395F2FB00D85C2F /* DROInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DROInfo.h; sourceTree = "<group>"; };
 		9DD966121395F2FB00D85C2F /* DROInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DROInfo.m; sourceTree = "<group>"; };
-		9DD966141395F7BF00D85C2F /* TIMSObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TIMSObject.h; sourceTree = "<group>"; };
-		9DD966151395F7BF00D85C2F /* TIMSObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TIMSObject.m; sourceTree = "<group>"; };
 		9DD9663E1396C37B00D85C2F /* PGSQLColumn.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PGSQLColumn.h; sourceTree = "<group>"; };
 		9DD9663F1396C37B00D85C2F /* PGSQLColumn.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PGSQLColumn.m; sourceTree = "<group>"; };
 		9DD966401396C37B00D85C2F /* PGSQLConnection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PGSQLConnection.h; sourceTree = "<group>"; };
@@ -308,19 +311,9 @@
 			children = (
 				9D6FC67A138C4B84006F3AE0 /* iTIMSAppDelegate.h */,
 				9D6FC67B138C4B84006F3AE0 /* iTIMSAppDelegate.m */,
-				9D2185F213904E2700D66E59 /* ItemViewController.h */,
-				9D2185F313904E2700D66E59 /* ItemViewController.m */,
-				9DA0832C139156C500BC489A /* AssignmentViewController.h */,
-				9DA0832D139156C500BC489A /* AssignmentViewController.m */,
 				9D1F57CE139544AD001E79EF /* LoanRecordPrinter.h */,
 				9D1F57CF139544AE001E79EF /* LoanRecordPrinter.m */,
 				9DA0832B13906BAD00BC489A /* Models */,
-				9D6FC67D138C4B84006F3AE0 /* MainWindow.xib */,
-				9D6FC680138C4B84006F3AE0 /* RootViewController.h */,
-				9D6FC681138C4B84006F3AE0 /* RootViewController.m */,
-				9D1F57C913942BD2001E79EF /* ItemLayer.h */,
-				9D1F57CA13942BD2001E79EF /* ItemLayer.m */,
-				9D6FC683138C4B84006F3AE0 /* RootViewController.xib */,
 				9D6FC672138C4B84006F3AE0 /* Supporting Files */,
 				9DD9666F1396C71D00D85C2F /* View Controllers */,
 				9D2185EF138F02D900D66E59 /* CSVParser.h */,
@@ -333,6 +326,8 @@
 		9D6FC672138C4B84006F3AE0 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				9D6FC67D138C4B84006F3AE0 /* MainWindow.xib */,
+				9D6FC683138C4B84006F3AE0 /* RootViewController.xib */,
 				9D6483F713958F31005F7DEE /* Glass.aiff */,
 				9D1F5809139566C8001E79EF /* RedCross.gif */,
 				9D1F580D139578F7001E79EF /* RawTypes.csv */,
@@ -426,8 +421,6 @@
 				9D2185F613904EC400D66E59 /* Assignment.m */,
 				9DD966111395F2FB00D85C2F /* DROInfo.h */,
 				9DD966121395F2FB00D85C2F /* DROInfo.m */,
-				9DD966141395F7BF00D85C2F /* TIMSObject.h */,
-				9DD966151395F7BF00D85C2F /* TIMSObject.m */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -466,13 +459,25 @@
 		9DD9666F1396C71D00D85C2F /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				9D6FC680138C4B84006F3AE0 /* RootViewController.h */,
+				9D6FC681138C4B84006F3AE0 /* RootViewController.m */,
+				9D2185F213904E2700D66E59 /* ItemViewController.h */,
+				9D2185F313904E2700D66E59 /* ItemViewController.m */,
+				9DA0832C139156C500BC489A /* AssignmentViewController.h */,
+				9DA0832D139156C500BC489A /* AssignmentViewController.m */,
+				9D7F5B7A13973F9E00DE519E /* NewAssignmentViewController.h */,
+				9D7F5B7B13973F9E00DE519E /* NewAssignmentViewController.m */,
 				9D6FC6AF138C5426006F3AE0 /* ScannerViewController.h */,
 				9D6FC6B0138C5426006F3AE0 /* ScannerViewController.m */,
+				9D1F57C913942BD2001E79EF /* ItemLayer.h */,
+				9D1F57CA13942BD2001E79EF /* ItemLayer.m */,
 				9D6FC6B1138C5426006F3AE0 /* ScannerViewController.xib */,
 				9D0D278C138D9DE400D92A37 /* LocationViewController.h */,
 				9D0D278D138D9DE400D92A37 /* LocationViewController.m */,
-				9D0D2795138DA49D00D92A37 /* ItemPositionViewController.h */,
-				9D0D2796138DA49D00D92A37 /* ItemPositionViewController.m */,
+				9D7F5B7D1397E72200DE519E /* TextTableCell.h */,
+				9D7F5B7E1397E72200DE519E /* TextTableCell.m */,
+				9D0D2795138DA49D00D92A37 /* ItemActivityViewController.h */,
+				9D0D2796138DA49D00D92A37 /* ItemActivityViewController.m */,
 				9D0D2798138DA4B100D92A37 /* ItemLocationViewController.h */,
 				9D0D2799138DA4B200D92A37 /* ItemLocationViewController.m */,
 				9D0D279B138DA4C900D92A37 /* ItemAreaViewController.h */,
@@ -567,7 +572,7 @@
 				9D6FC682138C4B84006F3AE0 /* RootViewController.m in Sources */,
 				9D6FC6B2138C5426006F3AE0 /* ScannerViewController.m in Sources */,
 				9D0D278E138D9DE400D92A37 /* LocationViewController.m in Sources */,
-				9D0D2797138DA49D00D92A37 /* ItemPositionViewController.m in Sources */,
+				9D0D2797138DA49D00D92A37 /* ItemActivityViewController.m in Sources */,
 				9D0D279A138DA4B200D92A37 /* ItemLocationViewController.m in Sources */,
 				9D0D279D138DA4C900D92A37 /* ItemAreaViewController.m in Sources */,
 				9D90582A138ED4690032871B /* CommBoxViewController.m in Sources */,
@@ -589,7 +594,6 @@
 				9D1F5805139545E3001E79EF /* RegexKitLite.m in Sources */,
 				9D1F581113957995001E79EF /* Type.m in Sources */,
 				9DD966131395F2FB00D85C2F /* DROInfo.m in Sources */,
-				9DD966161395F7BF00D85C2F /* TIMSObject.m in Sources */,
 				9DD966591396C37B00D85C2F /* PGSQLColumn.m in Sources */,
 				9DD9665A1396C37B00D85C2F /* PGSQLConnection.m in Sources */,
 				9DD9665B1396C37B00D85C2F /* PGSQLConnectionInfo.m in Sources */,
@@ -597,6 +601,8 @@
 				9DD9665F1396C37B00D85C2F /* PGSQLRecord.m in Sources */,
 				9DD966601396C37B00D85C2F /* PGSQLRecordset.m in Sources */,
 				9DD9666E1396C56C00D85C2F /* PSQLDatasource.m in Sources */,
+				9D7F5B7C13973F9F00DE519E /* NewAssignmentViewController.m in Sources */,
+				9D7F5B7F1397E72200DE519E /* TextTableCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

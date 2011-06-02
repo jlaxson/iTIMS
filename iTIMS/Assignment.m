@@ -10,6 +10,10 @@
 
 
 @implementation Assignment
+
+@synthesize rowNumber, returnBy, returnTime, position, location, checkoutTime, activity, name, checkoutBy, comment, item;
+
+/*
 @dynamic returnTime;
 @dynamic position;
 @dynamic location;
@@ -19,6 +23,6 @@
 @dynamic checkoutBy;
 @dynamic returnBy;
 @dynamic comment;
-@dynamic item;
+@dynamic item;*/
 
 @end

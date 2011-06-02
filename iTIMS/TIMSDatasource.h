@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
+@class DROInfo, Item, Assignment;
 
 @protocol TIMSDatasource
 
@@ -17,5 +18,6 @@
 
 - (void)saveItem:(Item *)item;
 - (void)saveAssignment:(Assignment *)assignment;
+- (Assignment *)createAssignment;
 
 @end

@@ -149,7 +149,7 @@
         } else if (indexPath.row == 2) {
             cell.textLabel.adjustsFontSizeToFitWidth = YES;
             if (self.assignment.returnTime) {
-                cell.textLabel.text = [NSString stringWithFormat:@"Returned %@ by %@", [dateFormatter stringFromDate:self.assignment.returnTime], self.assignment.checkoutBy];
+                cell.textLabel.text = [NSString stringWithFormat:@"Returned %@ by %@", [dateFormatter stringFromDate:self.assignment.returnTime], self.assignment.returnBy];
             } else {
                 cell.textLabel.text = @"Not returned";
             }
@@ -175,12 +175,20 @@
     [printer printAssignment:self.assignment];
 }
 
+- (void)beginReturn {
+    UIActionSheet *sheet = [[UIActionSheet alloc] initWithTitle:@"Are you sure you want to return this item?" delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:@"Return" otherButtonTitles:nil];
+    [sheet showInView:self.view];
+    [sheet release];
+}
+
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
     if (indexPath.section == 2 && (indexPath.row == 1 || self.assignment.returnTime)) {
         [self print];
+    } else if (indexPath.section == 2 && indexPath.row == 0 && self.assignment.returnTime == nil) {
+        [self beginReturn];
     }
 }
 
@@ -188,8 +196,25 @@
 {
     if (indexPath.section == 2 && (indexPath.row == 1 || self.assignment.returnTime)) {
         [self print];
+    } else if (indexPath.section == 2 && indexPath.row == 0 && self.assignment.returnTime == nil) {
+        [self beginReturn];
     }
 }
 
+
+
+- (void)actionSheet:(UIActionSheet *)actionSheet didDismissWithButtonIndex:(NSInteger)buttonIndex
+{
+    if (buttonIndex == 0) {
+        NSString *initials = [[NSUserDefaults standardUserDefaults] stringForKey:@"UserInitials"];
+        self.assignment.returnTime = [NSDate date];
+        self.assignment.returnBy = initials;
+        
+        iTIMSAppDelegate *app = [[UIApplication sharedApplication] delegate];
+        [app.datasource saveAssignment:self.assignment];
+        
+        [self.tableView reloadData];
+    }
+}
 
 @end

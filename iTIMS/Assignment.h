@@ -11,9 +11,11 @@
 
 @class Item;
 
-@interface Assignment : NSManagedObject {
+@interface Assignment : NSObject {
 @private
 }
+
+@property (nonatomic, retain) NSNumber *rowNumber;
 @property (nonatomic, retain) NSDate * returnTime;
 @property (nonatomic, retain) NSString * position;
 @property (nonatomic, retain) NSString * location;

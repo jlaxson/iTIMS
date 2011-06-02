@@ -16,7 +16,7 @@
 
 @implementation ScannerViewController
 
-@synthesize readerView, locationButton, commBoxButton, scanAction;
+@synthesize readerView, locationButton, commBoxButton, scanAction, manualButton;
 
 @synthesize location, activity, area;
 
@@ -88,6 +88,8 @@
     itemLayer.opacity = 0.0;
     
     [self.view.layer addSublayer:itemLayer];
+    
+    self.navigationItem.rightBarButtonItem = self.manualButton;
 }
 
 - (void)viewDidUnload
@@ -158,6 +160,9 @@
     AudioServicesPlaySystemSound(scanSound);
     AudioServicesPlaySystemSound(kSystemSoundID_Vibrate);
     
+    while (barcode.length < 6) {
+        barcode = [@"0" stringByAppendingString:barcode];
+    }
     
     if (self.scanAction) {
         self.scanAction(self, barcode);
@@ -183,6 +188,58 @@
         //self.navigationItem.title = sym.data;
         [self processBarcode:sym.data];
     }
+}
+
+- (void)manualEntry:(id)sender
+{
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Look Up Item" message:@"\n\n\n"
+                                                           delegate:self cancelButtonTitle: @"Cancel"otherButtonTitles:@"OK", nil];
+    
+    UILabel *passwordLabel = [[UILabel alloc] initWithFrame:CGRectMake(12,40,260,25)];
+    passwordLabel.font = [UIFont systemFontOfSize:16];
+    passwordLabel.textColor = [UIColor whiteColor];
+    passwordLabel.backgroundColor = [UIColor clearColor];
+    passwordLabel.shadowColor = [UIColor blackColor];
+    passwordLabel.shadowOffset = CGSizeMake(0,-1);
+    passwordLabel.textAlignment = UITextAlignmentCenter;
+    passwordLabel.text = @"Asset or Reference Number";
+    [alert addSubview:passwordLabel];
+    
+    UITextField *field = [[UITextField alloc] initWithFrame:CGRectMake(16,83,252,25)];
+    field.font = [UIFont systemFontOfSize:18];
+    field.backgroundColor = [UIColor whiteColor];
+    field.keyboardAppearance = UIKeyboardAppearanceAlert;
+    field.autocorrectionType = UITextAutocorrectionTypeNo;
+    field.autocapitalizationType = UITextAutocapitalizationTypeAllCharacters;
+    field.delegate = self;
+    field.returnKeyType = UIReturnKeySearch;
+    [field becomeFirstResponder];
+    [alert addSubview:field];
+    
+    alertView = alert;
+    [alert show];
+    [alert release];
+}
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+    [alertView dismissWithClickedButtonIndex:1 animated:YES];
+    return YES;
+}
+
+- (void)alertView:(UIAlertView *)av didDismissWithButtonIndex:(NSInteger)buttonIndex {
+    if (buttonIndex == 1) {
+        // find subview that is a text field
+        UITextField *f = nil;
+        for (UIView *view in alertView.subviews) {
+            if ([view isKindOfClass:[UITextField class]])  {
+                f = (UITextField *)view;
+                break;
+            }
+        }
+        [self processBarcode:[f.text uppercaseString]];
+    }
+    av = nil;
 }
 
 @end

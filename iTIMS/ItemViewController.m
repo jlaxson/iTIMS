@@ -8,6 +8,7 @@
 
 #import "ItemViewController.h"
 #import "AssignmentViewController.h"
+#import "NewAssignmentViewController.h"
 
 @implementation ItemViewController
 
@@ -57,6 +58,7 @@
 
 - (void)viewWillAppear:(BOOL)animated
 {
+    [self.tableView reloadData];
     [super viewWillAppear:animated];
     self.navigationItem.title = self.item.referenceNumber;
 }
@@ -233,6 +235,9 @@
             [self.navigationController pushViewController:vc animated:YES];
         } else {
             // assign
+            NewAssignmentViewController *vc = [[NewAssignmentViewController alloc] initWithStyle:UITableViewStyleGrouped];
+            vc.item = self.item;
+            [self.navigationController pushViewController:vc animated:YES];
         }
     } else if (indexPath.section == 2) {
         AssignmentViewController *vc = [[AssignmentViewController alloc] initWithStyle:UITableViewStyleGrouped];

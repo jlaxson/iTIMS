@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 
-@class Case, Assignment;
+@class Case, Assignment, Type;
 
 @interface Item : NSObject {
 @private
@@ -18,10 +18,10 @@
 @property (nonatomic, retain) NSString * referenceNumber;
 @property (nonatomic, retain) NSNumber * rowNumber;
 @property (nonatomic, retain) NSString * assetTag;
-@property (nonatomic, retain) NSString * type;
+@property (nonatomic, retain) Type * type;
 @property (nonatomic, retain) NSString * desc;
 @property (nonatomic, retain) NSSet *assignments;
-@property (nonatomic, retain) Case *commBox;
+@property (nonatomic, retain) Item *commBox;
 @property (nonatomic, readonly) Assignment *currentAssignment;
 @property (nonatomic, retain) NSNumber *showOnReport;
 @property (nonatomic, readonly) NSArray *sortedAssignments;

@@ -42,10 +42,10 @@
     [self loadData];
 #endif
 #if TARGET_IPHONE_SIMULATOR 
-    ItemViewController *vc = [[ItemViewController alloc] initWithStyle:UITableViewStyleGrouped];
-    Item *item = [self.datasource findItemByReference:@"571-205-3330"];
-    vc.item = item;
-    [self.navigationController pushViewController:vc animated:YES];
+    //ItemViewController *vc = [[ItemViewController alloc] initWithStyle:UITableViewStyleGrouped];
+    //Item *item = [self.datasource findItemByReference:@"571-205-3330"];
+    //vc.item = item;
+    //[self.navigationController pushViewController:vc animated:YES];
 #endif
     return YES;
 }

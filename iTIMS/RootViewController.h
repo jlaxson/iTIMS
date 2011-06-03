@@ -12,5 +12,8 @@
 
 }
 
+@property (retain) IBOutlet UIBarButtonItem *infoButton;
+
+- (IBAction)showInfo:(id)sender;
 
 @end

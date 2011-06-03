@@ -12,13 +12,16 @@
 
 
 @implementation Type
+
+@synthesize name, requiresName, desc, rawAccessories, caseType, items, isCase;
+/*
 @dynamic name;
 @dynamic requiresName;
 @dynamic desc;
 @dynamic rawAccessories;
 @dynamic caseType;
 @dynamic items;
-@dynamic isCase;
+@dynamic isCase;*/
 
 -  (NSArray *)accessories {
     if (_cachedAccessories == nil) {

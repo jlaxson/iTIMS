@@ -11,15 +11,20 @@
 #import "ItemViewController.h"
 #import "iTIMSAppDelegate.h"
 #import "TIMSDatasource.h"
+#import "SettingsViewController.h"
 
 #import <CoreData/CoreData.h>
 
 @implementation RootViewController
 
+@synthesize infoButton;
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     self.navigationItem.title = @"iTIMS";
+    self.navigationItem.rightBarButtonItem = self.infoButton;
+    
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -41,14 +46,6 @@
 {
 	[super viewDidDisappear:animated];
 }
-
-/*
- // Override to allow orientations other than the default portrait orientation.
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
-	// Return YES for supported orientations.
-	return (interfaceOrientation == UIInterfaceOrientationPortrait);
-}
- */
 
 // Customize the number of sections in the table view.
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -314,6 +311,13 @@
 - (void)dealloc
 {
     [super dealloc];
+}
+
+- (void)showInfo:(id)sender
+{
+    SettingsViewController *vc = [[SettingsViewController alloc] initWithStyle:UITableViewStyleGrouped];
+    
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 @end

@@ -11,6 +11,7 @@
 
 @interface PSQLDatasource : NSObject <TIMSDatasource> {
     PGSQLConnection *_connection;
+    NSMutableDictionary *typeCache;
 }
 
 @end

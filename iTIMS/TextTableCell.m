@@ -17,10 +17,10 @@
 {
     self = [super initWithStyle:UITableViewCellStyleDefault reuseIdentifier:reuseIdentifier];
     if (self) {
-        UITextField *field = [[UITextField alloc] initWithFrame:CGRectMake(20, 10, 280, 30)];
+        UITextField *field = [[UITextField alloc] initWithFrame:CGRectMake(10, 10, 280, 30)];
         field.font = [UIFont systemFontOfSize:24];
         
-        [self addSubview:field];
+        [self.contentView insertSubview:field aboveSubview:self.textLabel];
         self.selectionStyle = UITableViewCellSelectionStyleNone;
         self.textField = field;
         [field release];

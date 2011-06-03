@@ -11,10 +11,18 @@
 
 @implementation PSQLDatasource
 
+- (NSString *)escapeText:(NSString *)text {
+    if (text == nil) return @"";
+    
+    return [text stringByReplacingOccurrencesOfString:@"'" withString:@"\\'"];
+}
+
 - (id)init
 {
     self = [super init];
     if (self) {
+        typeCache = [[NSMutableDictionary alloc] init];
+        
         _connection = [[PGSQLConnection alloc] init];
         [_connection setServer:@"jlaxson.local"];
         [_connection setDatabaseName:@"tims"];
@@ -40,8 +48,8 @@
     record = [results moveFirst];
     
     DROInfo *info = [[DROInfo alloc] init];
-    info.drName = [[record fieldByName:@"DR Number"] asString];
-    info.drNumber = [[record fieldByName:@"DR Name"] asString];
+    info.drNumber = [[record fieldByName:@"DR Number"] asString];
+    info.drName = [[record fieldByName:@"DR Name"] asString];
     
     [results close];
     
@@ -86,6 +94,33 @@
     return assignments;
 }
 
+- (Type *)findTypeByName:(NSString *)name
+{
+    Type *t = [typeCache objectForKey:name];
+    if (t) return t;
+    
+    PGSQLRecordset *results;
+    PGSQLRecord *record;
+    
+    results = [_connection open:[NSString stringWithFormat:@"SELECT * from \"Type\" WHERE \"Type\"='%@'", [self escapeText:name]]];
+    
+    if ([results isEOF])
+        return nil;
+    
+    record = [results moveFirst];
+    
+    t = [[Type alloc] init];
+    t.name = [[record fieldByName:@"Type"] asString];
+    t.desc = [[record fieldByName:@"Long Title"] asString];
+    t.requiresName = [[record fieldByName:@"NameReq"] asNumber];
+    t.isCase = [[record fieldByName:@"Case"] asNumber];
+    t.rawAccessories = [[record fieldByName:@"Accessories"] asString];
+    
+    [typeCache setObject:t forKey:t.name];
+    
+    return t;
+}
+
 - (Item *)findItemByReference:(NSString *)reference
 {
     PGSQLRecordset *results;
@@ -106,15 +141,18 @@
     
     item.assignments = [self findAssignmentsForItem:item];
     
+    NSString *boxName = [[record fieldByName:@"Comm Box"] asString];
+    if (![boxName isEqualToString:@"UNASSIGNED"] && ![boxName isEqualToString:item.referenceNumber])
+    {
+        Item *commBox = [self findItemByReference:boxName];
+        item.commBox = commBox;
+    }
+    
+    item.type = [self findTypeByName:[[record fieldByName:@"Type"] asString]];
+    
     [results close];
     
     return item;
-}
-
-- (NSString *)escapeText:(NSString *)text {
-    if (text == nil) return @"";
-    
-    return [text stringByReplacingOccurrencesOfString:@"'" withString:@"\\'"];
 }
 
 - (NSString *)formatDateForSQL:(NSDate *)d {

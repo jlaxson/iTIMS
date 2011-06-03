@@ -11,7 +11,7 @@
 
 @class Item, Type;
 
-@interface Type : NSManagedObject {
+@interface Type : NSObject {
 @private
     NSArray *_cachedAccessories;
 }

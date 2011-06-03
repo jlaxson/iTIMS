@@ -35,6 +35,7 @@
 		9D2185F713904EC400D66E59 /* Assignment.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D2185F613904EC400D66E59 /* Assignment.m */; };
 		9D2185FA13904EC500D66E59 /* Case.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D2185F913904EC400D66E59 /* Case.m */; };
 		9D6483F813958F31005F7DEE /* Glass.aiff in Resources */ = {isa = PBXBuildFile; fileRef = 9D6483F713958F31005F7DEE /* Glass.aiff */; };
+		9D6DC82F139827E2002F8ECB /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D6DC82E139827E1002F8ECB /* SettingsViewController.m */; };
 		9D6FC66C138C4B84006F3AE0 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9D6FC66B138C4B84006F3AE0 /* UIKit.framework */; };
 		9D6FC66E138C4B84006F3AE0 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9D6FC66D138C4B84006F3AE0 /* Foundation.framework */; };
 		9D6FC670138C4B84006F3AE0 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9D6FC66F138C4B84006F3AE0 /* CoreGraphics.framework */; };
@@ -63,6 +64,9 @@
 		9D90582B138ED4690032871B /* CommBoxViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9D905829138ED4690032871B /* CommBoxViewController.xib */; };
 		9D90582F138ED71E0032871B /* Inventory Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 9D90582D138ED71E0032871B /* Inventory Model.xcdatamodeld */; };
 		9D905865138EF9C00032871B /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9D905864138EF9C00032871B /* CoreData.framework */; };
+		9D9AA8D0139922C6005B1581 /* EditableValueCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D9AA8CF139922C6005B1581 /* EditableValueCell.m */; };
+		9D9AA8D513994873005B1581 /* SignatureCaptureViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D9AA8D313994873005B1581 /* SignatureCaptureViewController.m */; };
+		9D9AA8D613994873005B1581 /* SignatureCaptureViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9D9AA8D413994873005B1581 /* SignatureCaptureViewController.xib */; };
 		9DA0832813905EE900BC489A /* Item.m in Sources */ = {isa = PBXBuildFile; fileRef = 9DA0832713905EE900BC489A /* Item.m */; };
 		9DA0832E139156C600BC489A /* AssignmentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9DA0832D139156C500BC489A /* AssignmentViewController.m */; };
 		9DD966131395F2FB00D85C2F /* DROInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 9DD966121395F2FB00D85C2F /* DROInfo.m */; };
@@ -131,6 +135,8 @@
 		9D2185F813904EC400D66E59 /* Case.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Case.h; sourceTree = "<group>"; };
 		9D2185F913904EC400D66E59 /* Case.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Case.m; sourceTree = "<group>"; };
 		9D6483F713958F31005F7DEE /* Glass.aiff */ = {isa = PBXFileReference; lastKnownFileType = audio.aiff; path = Glass.aiff; sourceTree = "<group>"; };
+		9D6DC82D139827E1002F8ECB /* SettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsViewController.h; sourceTree = "<group>"; };
+		9D6DC82E139827E1002F8ECB /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
 		9D6FC667138C4B84006F3AE0 /* iTIMS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iTIMS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9D6FC66B138C4B84006F3AE0 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		9D6FC66D138C4B84006F3AE0 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -187,6 +193,11 @@
 		9D905829138ED4690032871B /* CommBoxViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CommBoxViewController.xib; sourceTree = "<group>"; };
 		9D90582E138ED71E0032871B /* Inventory Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Inventory Model.xcdatamodel"; sourceTree = "<group>"; };
 		9D905864138EF9C00032871B /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		9D9AA8CE139922C6005B1581 /* EditableValueCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditableValueCell.h; sourceTree = "<group>"; };
+		9D9AA8CF139922C6005B1581 /* EditableValueCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditableValueCell.m; sourceTree = "<group>"; };
+		9D9AA8D213994873005B1581 /* SignatureCaptureViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignatureCaptureViewController.h; sourceTree = "<group>"; };
+		9D9AA8D313994873005B1581 /* SignatureCaptureViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignatureCaptureViewController.m; sourceTree = "<group>"; };
+		9D9AA8D413994873005B1581 /* SignatureCaptureViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SignatureCaptureViewController.xib; sourceTree = "<group>"; };
 		9DA0832613905EE900BC489A /* Item.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Item.h; sourceTree = "<group>"; };
 		9DA0832713905EE900BC489A /* Item.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Item.m; sourceTree = "<group>"; };
 		9DA0832C139156C500BC489A /* AssignmentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AssignmentViewController.h; sourceTree = "<group>"; };
@@ -269,9 +280,9 @@
 		9D6FC65C138C4B84006F3AE0 = {
 			isa = PBXGroup;
 			children = (
-				9D1F57D113954577001E79EF /* MGTemplateEngine */,
 				9D6FC671138C4B84006F3AE0 /* iTIMS */,
 				9D6FC68B138C4C4D006F3AE0 /* ZBarSDK */,
+				9D1F57D113954577001E79EF /* MGTemplateEngine */,
 				9DD966371396C37B00D85C2F /* PGSQLKit */,
 				9D6FC66A138C4B84006F3AE0 /* Frameworks */,
 				9D6FC668138C4B84006F3AE0 /* Products */,
@@ -311,8 +322,13 @@
 			children = (
 				9D6FC67A138C4B84006F3AE0 /* iTIMSAppDelegate.h */,
 				9D6FC67B138C4B84006F3AE0 /* iTIMSAppDelegate.m */,
+				9D6FC680138C4B84006F3AE0 /* RootViewController.h */,
+				9D6FC681138C4B84006F3AE0 /* RootViewController.m */,
 				9D1F57CE139544AD001E79EF /* LoanRecordPrinter.h */,
 				9D1F57CF139544AE001E79EF /* LoanRecordPrinter.m */,
+				9D9AA8D213994873005B1581 /* SignatureCaptureViewController.h */,
+				9D9AA8D313994873005B1581 /* SignatureCaptureViewController.m */,
+				9D9AA8D413994873005B1581 /* SignatureCaptureViewController.xib */,
 				9DA0832B13906BAD00BC489A /* Models */,
 				9D6FC672138C4B84006F3AE0 /* Supporting Files */,
 				9DD9666F1396C71D00D85C2F /* View Controllers */,
@@ -459,8 +475,10 @@
 		9DD9666F1396C71D00D85C2F /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				9D6FC680138C4B84006F3AE0 /* RootViewController.h */,
-				9D6FC681138C4B84006F3AE0 /* RootViewController.m */,
+				9D6DC82D139827E1002F8ECB /* SettingsViewController.h */,
+				9D6DC82E139827E1002F8ECB /* SettingsViewController.m */,
+				9D9AA8CE139922C6005B1581 /* EditableValueCell.h */,
+				9D9AA8CF139922C6005B1581 /* EditableValueCell.m */,
 				9D2185F213904E2700D66E59 /* ItemViewController.h */,
 				9D2185F313904E2700D66E59 /* ItemViewController.m */,
 				9DA0832C139156C500BC489A /* AssignmentViewController.h */,
@@ -557,6 +575,7 @@
 				9D1F580A139566C9001E79EF /* RedCross.gif in Resources */,
 				9D1F580E139578F7001E79EF /* RawTypes.csv in Resources */,
 				9D6483F813958F31005F7DEE /* Glass.aiff in Resources */,
+				9D9AA8D613994873005B1581 /* SignatureCaptureViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -603,6 +622,9 @@
 				9DD9666E1396C56C00D85C2F /* PSQLDatasource.m in Sources */,
 				9D7F5B7C13973F9F00DE519E /* NewAssignmentViewController.m in Sources */,
 				9D7F5B7F1397E72200DE519E /* TextTableCell.m in Sources */,
+				9D6DC82F139827E2002F8ECB /* SettingsViewController.m in Sources */,
+				9D9AA8D0139922C6005B1581 /* EditableValueCell.m in Sources */,
+				9D9AA8D513994873005B1581 /* SignatureCaptureViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

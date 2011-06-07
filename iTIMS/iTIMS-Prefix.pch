@@ -31,5 +31,8 @@
 #import "Assignment.h"
 #import "Type.h"
 #import "DROInfo.h"
+#import "Activity.h"
+#import "Location.h"
+#import "Position.h"
 
 #endif

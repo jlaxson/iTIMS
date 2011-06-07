@@ -7,10 +7,16 @@
 //
 
 #import <UIKit/UIKit.h>
+@class SignatureCaptureView;
 
-
-@interface SignatureCaptureViewController : UIViewController {
+@interface SignatureCaptureViewController : UIViewController <UIActionSheetDelegate> {
     
 }
+
+@property (retain) IBOutlet UIBarButtonItem *doneButton;
+@property (retain) IBOutlet SignatureCaptureView *signatureView;
+@property (copy) void (^completionHandler)(SignatureCaptureViewController *vc, UIImage *image);
+
+- (IBAction)doneButton:(id)sender;
 
 @end

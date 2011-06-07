@@ -17,7 +17,8 @@
 {
     self = [super initWithStyle:style];
     if (self) {
-        locations = [[NSArray alloc] initWithContentsOfURL:[[NSBundle mainBundle] URLForResource:@"Locations" withExtension:@"plist"]];
+        self.title = @"Location";
+        locations = [(iTIMSAppDelegate *)[[UIApplication sharedApplication] delegate] droInfo].locations;
     }
     return self;
 }
@@ -102,11 +103,14 @@
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
-        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
+        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue2 reuseIdentifier:CellIdentifier] autorelease];
     }
     
     // Configure the cell...
-    cell.textLabel.text = [locations objectAtIndex:indexPath.row];
+    Location *l = [locations objectAtIndex:indexPath.row];
+    cell.textLabel.text = l.code;
+    cell.detailTextLabel.text = l.name;
+    cell.detailTextLabel.adjustsFontSizeToFitWidth = YES;
     
     return cell;
 }

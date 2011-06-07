@@ -2,32 +2,32 @@
 //  ItemPositionViewController.m
 //  iTIMS
 //
-//  Created by John Laxson on 5/25/11.
+//  Created by John Laxson on 6/4/11.
 //  Copyright 2011 SOS Technologies, Inc. All rights reserved.
 //
 
 #import "ItemPositionViewController.h"
 
-#import "LocationViewController.h"
 
 @implementation ItemPositionViewController
 
-@synthesize group, activity;
+@synthesize position, completedAction;
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
     self = [super initWithStyle:style];
     if (self) {
-        positions = [[NSDictionary alloc] initWithContentsOfURL:[[NSBundle mainBundle] URLForResource:@"Activities" withExtension:@"plist"]];
-        groups = [[positions allKeys] copy];
+        DROInfo *info = [(iTIMSAppDelegate *)[[UIApplication sharedApplication] delegate] droInfo];
+        positions = [info.positions retain];
+        self.title = @"Position";
     }
     return self;
 }
 
 - (void)dealloc
 {
-    [positions release];
-    [groups release];
+    [positions release]; positions = nil;
+    
     [super dealloc];
 }
 
@@ -89,12 +89,12 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return [groups count];
+    return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return [[positions objectForKey:[groups objectAtIndex:section]] count];
+    return [positions count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -103,41 +103,26 @@
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
-        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
+        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue2 reuseIdentifier:CellIdentifier] autorelease];
     }
     
-    // Configure the cell...
-    NSArray *g = [positions objectForKey:[groups objectAtIndex:indexPath.section]];
-    cell.textLabel.text = [g objectAtIndex:indexPath.row];
-    
-    if ([[groups objectAtIndex:indexPath.section] isEqualToString:self.group] && 
-        [cell.textLabel.text isEqualToString:self.activity]) {
-        cell.accessoryType = UITableViewCellAccessoryCheckmark;
-    } else {
-        cell.accessoryType = UITableViewCellAccessoryNone;
-    }
+    Position *pos = [positions objectAtIndex:indexPath.row];
+    cell.textLabel.text = pos.code;
+    cell.detailTextLabel.text = pos.name;
+    cell.detailTextLabel.adjustsFontSizeToFitWidth = YES;
     
     return cell;
-}
-
-- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
-{
-    return [groups objectAtIndex:section];
 }
 
 #pragma mark - Table view delegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    LocationViewController *root = [[self.navigationController viewControllers] objectAtIndex:0];
-    
-    self.group = [groups objectAtIndex:indexPath.section];
-    self.activity = [[positions objectForKey:self.group] objectAtIndex:indexPath.row];
-    
-    NSString *fmt = [NSString stringWithFormat:@"%@-%@", self.group, self.activity];
-    root.position = fmt;
-    
-    [self.navigationController popViewControllerAnimated:YES];
+    Position *pos = [positions objectAtIndex:indexPath.row];
+    self.position = pos;
+    if (self.completedAction) {
+        self.completedAction(self, pos);
+    }
 }
 
 @end

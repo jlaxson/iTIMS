@@ -41,6 +41,15 @@
     
     [variables setObject:title forKey:@"droName"];
     
+    NSString *sigPath = nil;
+    if (assignment.signatureImage) {
+        sigPath = NSTemporaryDirectory();
+        sigPath = [sigPath stringByAppendingPathComponent:@"sig.png"];
+        [UIImagePNGRepresentation(assignment.signatureImage) writeToFile:sigPath atomically:YES];
+        
+        [variables setObject:sigPath forKey:@"signaturePath"];
+    }
+    
     NSString *layout = [engine processTemplate:template withVariables:variables];
     
     UIWebView *webView = [[UIWebView alloc] init];
@@ -48,7 +57,6 @@
     webView.dataDetectorTypes = UIDataDetectorTypeNone;
     
     [webView loadHTMLString:layout baseURL:[[NSBundle mainBundle] resourceURL]];
-    
     
 }
 

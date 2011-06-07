@@ -1,0 +1,3 @@
+[submodule "PGSQLKit"]
+	path = PGSQLKit
+	url = git@github.com:jlaxson/PGSQLKit.git

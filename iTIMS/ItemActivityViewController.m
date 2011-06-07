@@ -12,7 +12,7 @@
 
 @implementation ItemActivityViewController
 
-@synthesize group, activity, completedAction;
+@synthesize activity, completedAction;
 
 - (id)initWithCompletionHandler:(ActivityCompletionHandler)handler
 {
@@ -27,8 +27,17 @@
 {
     self = [super initWithStyle:style];
     if (self) {
-        positions = [[NSDictionary alloc] initWithContentsOfURL:[[NSBundle mainBundle] URLForResource:@"Activities" withExtension:@"plist"]];
-        groups = [[positions allKeys] copy];
+        DROInfo *info = [(iTIMSAppDelegate *)[[UIApplication sharedApplication] delegate] droInfo];
+        positions = [info.groups retain];
+        
+        groups = [[positions allKeys] sortedArrayUsingComparator:^(id obj1, id obj2) {
+            return [(NSNumber *)[[positions objectForKey:obj1] index] compare:(NSNumber *)[[positions objectForKey:obj2] index]];
+            
+        }];
+        [groups retain];
+        
+        self.title = @"Activity";
+        
     }
     return self;
 }
@@ -103,7 +112,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return [[positions objectForKey:[groups objectAtIndex:section]] count];
+    return [[[positions objectForKey:[groups objectAtIndex:section]] activities] count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -112,15 +121,18 @@
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
-        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
+        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue2 reuseIdentifier:CellIdentifier] autorelease];
     }
     
     // Configure the cell...
-    NSArray *g = [positions objectForKey:[groups objectAtIndex:indexPath.section]];
-    cell.textLabel.text = [g objectAtIndex:indexPath.row];
+    NSArray *g = [[positions objectForKey:[groups objectAtIndex:indexPath.section]] activities];
+    Activity *act = [g objectAtIndex:indexPath.row];
     
-    if ([[groups objectAtIndex:indexPath.section] isEqualToString:self.group] && 
-        [cell.textLabel.text isEqualToString:self.activity]) {
+    cell.detailTextLabel.text = act.name;
+    cell.detailTextLabel.adjustsFontSizeToFitWidth = YES;
+    cell.textLabel.text = act.code;
+    
+    if ([act.code isEqualToString:self.activity.code]) {
         cell.accessoryType = UITableViewCellAccessoryCheckmark;
     } else {
         cell.accessoryType = UITableViewCellAccessoryNone;
@@ -131,19 +143,19 @@
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
-    return [groups objectAtIndex:section];
+    NSString *group = [groups objectAtIndex:section];
+    return [[positions objectForKey:group] name];
 }
 
 #pragma mark - Table view delegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    self.group = [groups objectAtIndex:indexPath.section];
-    self.activity = [[positions objectForKey:self.group] objectAtIndex:indexPath.row];
+    NSString *group = [groups objectAtIndex:indexPath.section];
+    self.activity = [[[positions objectForKey:group] activities] objectAtIndex:indexPath.row];
     
-    NSString *fmt = [NSString stringWithFormat:@"%@-%@", self.group, self.activity];
     if (self.completedAction) {
-        self.completedAction(self, fmt);
+        self.completedAction(self, self.activity);
     }
     
     [self.navigationController popViewControllerAnimated:YES];

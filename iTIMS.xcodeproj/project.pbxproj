@@ -60,6 +60,9 @@
 		9D8E1DFF138D77DF0028556F /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9D8E1DFA138D77DF0028556F /* CoreVideo.framework */; };
 		9D8E1E00138D77DF0028556F /* libiconv.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9D8E1DFB138D77DF0028556F /* libiconv.dylib */; };
 		9D8E1E01138D77DF0028556F /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9D8E1DFC138D77DF0028556F /* QuartzCore.framework */; };
+		9D901F9F139A95AB00CC9A7B /* Location.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D901F9E139A95AB00CC9A7B /* Location.m */; };
+		9D901FA3139A981B00CC9A7B /* ItemPositionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D901FA2139A981B00CC9A7B /* ItemPositionViewController.m */; };
+		9D901FA6139A982800CC9A7B /* Position.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D901FA5139A982800CC9A7B /* Position.m */; };
 		9D90582A138ED4690032871B /* CommBoxViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D905828138ED4690032871B /* CommBoxViewController.m */; };
 		9D90582B138ED4690032871B /* CommBoxViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9D905829138ED4690032871B /* CommBoxViewController.xib */; };
 		9D90582F138ED71E0032871B /* Inventory Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 9D90582D138ED71E0032871B /* Inventory Model.xcdatamodeld */; };
@@ -67,6 +70,8 @@
 		9D9AA8D0139922C6005B1581 /* EditableValueCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D9AA8CF139922C6005B1581 /* EditableValueCell.m */; };
 		9D9AA8D513994873005B1581 /* SignatureCaptureViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D9AA8D313994873005B1581 /* SignatureCaptureViewController.m */; };
 		9D9AA8D613994873005B1581 /* SignatureCaptureViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9D9AA8D413994873005B1581 /* SignatureCaptureViewController.xib */; };
+		9D9AA8D913994A11005B1581 /* SignatureCaptureView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D9AA8D813994A10005B1581 /* SignatureCaptureView.m */; };
+		9D9AA8DC139A8DBC005B1581 /* Activity.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D9AA8DB139A8DBB005B1581 /* Activity.m */; };
 		9DA0832813905EE900BC489A /* Item.m in Sources */ = {isa = PBXBuildFile; fileRef = 9DA0832713905EE900BC489A /* Item.m */; };
 		9DA0832E139156C600BC489A /* AssignmentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9DA0832D139156C500BC489A /* AssignmentViewController.m */; };
 		9DD966131395F2FB00D85C2F /* DROInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 9DD966121395F2FB00D85C2F /* DROInfo.m */; };
@@ -188,6 +193,12 @@
 		9D8E1DFA138D77DF0028556F /* CoreVideo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreVideo.framework; path = System/Library/Frameworks/CoreVideo.framework; sourceTree = SDKROOT; };
 		9D8E1DFB138D77DF0028556F /* libiconv.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libiconv.dylib; path = usr/lib/libiconv.dylib; sourceTree = SDKROOT; };
 		9D8E1DFC138D77DF0028556F /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		9D901F9D139A95AB00CC9A7B /* Location.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Location.h; sourceTree = "<group>"; };
+		9D901F9E139A95AB00CC9A7B /* Location.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Location.m; sourceTree = "<group>"; };
+		9D901FA1139A981B00CC9A7B /* ItemPositionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItemPositionViewController.h; sourceTree = "<group>"; };
+		9D901FA2139A981B00CC9A7B /* ItemPositionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ItemPositionViewController.m; sourceTree = "<group>"; };
+		9D901FA4139A982800CC9A7B /* Position.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Position.h; sourceTree = "<group>"; };
+		9D901FA5139A982800CC9A7B /* Position.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Position.m; sourceTree = "<group>"; };
 		9D905827138ED4690032871B /* CommBoxViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommBoxViewController.h; sourceTree = "<group>"; };
 		9D905828138ED4690032871B /* CommBoxViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommBoxViewController.m; sourceTree = "<group>"; };
 		9D905829138ED4690032871B /* CommBoxViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CommBoxViewController.xib; sourceTree = "<group>"; };
@@ -198,6 +209,10 @@
 		9D9AA8D213994873005B1581 /* SignatureCaptureViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignatureCaptureViewController.h; sourceTree = "<group>"; };
 		9D9AA8D313994873005B1581 /* SignatureCaptureViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignatureCaptureViewController.m; sourceTree = "<group>"; };
 		9D9AA8D413994873005B1581 /* SignatureCaptureViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SignatureCaptureViewController.xib; sourceTree = "<group>"; };
+		9D9AA8D713994A10005B1581 /* SignatureCaptureView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignatureCaptureView.h; sourceTree = "<group>"; };
+		9D9AA8D813994A10005B1581 /* SignatureCaptureView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignatureCaptureView.m; sourceTree = "<group>"; };
+		9D9AA8DA139A8DBB005B1581 /* Activity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Activity.h; sourceTree = "<group>"; };
+		9D9AA8DB139A8DBB005B1581 /* Activity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Activity.m; sourceTree = "<group>"; };
 		9DA0832613905EE900BC489A /* Item.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Item.h; sourceTree = "<group>"; };
 		9DA0832713905EE900BC489A /* Item.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Item.m; sourceTree = "<group>"; };
 		9DA0832C139156C500BC489A /* AssignmentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AssignmentViewController.h; sourceTree = "<group>"; };
@@ -326,9 +341,6 @@
 				9D6FC681138C4B84006F3AE0 /* RootViewController.m */,
 				9D1F57CE139544AD001E79EF /* LoanRecordPrinter.h */,
 				9D1F57CF139544AE001E79EF /* LoanRecordPrinter.m */,
-				9D9AA8D213994873005B1581 /* SignatureCaptureViewController.h */,
-				9D9AA8D313994873005B1581 /* SignatureCaptureViewController.m */,
-				9D9AA8D413994873005B1581 /* SignatureCaptureViewController.xib */,
 				9DA0832B13906BAD00BC489A /* Models */,
 				9D6FC672138C4B84006F3AE0 /* Supporting Files */,
 				9DD9666F1396C71D00D85C2F /* View Controllers */,
@@ -437,6 +449,12 @@
 				9D2185F613904EC400D66E59 /* Assignment.m */,
 				9DD966111395F2FB00D85C2F /* DROInfo.h */,
 				9DD966121395F2FB00D85C2F /* DROInfo.m */,
+				9D9AA8DA139A8DBB005B1581 /* Activity.h */,
+				9D9AA8DB139A8DBB005B1581 /* Activity.m */,
+				9D901F9D139A95AB00CC9A7B /* Location.h */,
+				9D901F9E139A95AB00CC9A7B /* Location.m */,
+				9D901FA4139A982800CC9A7B /* Position.h */,
+				9D901FA5139A982800CC9A7B /* Position.m */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -458,8 +476,7 @@
 				9DD966511396C37B00D85C2F /* PGSQLRecordset.h */,
 				9DD966521396C37B00D85C2F /* PGSQLRecordset.m */,
 			);
-			name = PGSQLKit;
-			path = "../../../Downloads/PGSQLKit-iOS-8.4.3/PGSQLKit";
+			path = PGSQLKit;
 			sourceTree = "<group>";
 		};
 		9DD9666B1396C55A00D85C2F /* Datasource */ = {
@@ -475,6 +492,11 @@
 		9DD9666F1396C71D00D85C2F /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				9D9AA8D213994873005B1581 /* SignatureCaptureViewController.h */,
+				9D9AA8D313994873005B1581 /* SignatureCaptureViewController.m */,
+				9D9AA8D713994A10005B1581 /* SignatureCaptureView.h */,
+				9D9AA8D813994A10005B1581 /* SignatureCaptureView.m */,
+				9D9AA8D413994873005B1581 /* SignatureCaptureViewController.xib */,
 				9D6DC82D139827E1002F8ECB /* SettingsViewController.h */,
 				9D6DC82E139827E1002F8ECB /* SettingsViewController.m */,
 				9D9AA8CE139922C6005B1581 /* EditableValueCell.h */,
@@ -500,6 +522,8 @@
 				9D0D2799138DA4B200D92A37 /* ItemLocationViewController.m */,
 				9D0D279B138DA4C900D92A37 /* ItemAreaViewController.h */,
 				9D0D279C138DA4C900D92A37 /* ItemAreaViewController.m */,
+				9D901FA1139A981B00CC9A7B /* ItemPositionViewController.h */,
+				9D901FA2139A981B00CC9A7B /* ItemPositionViewController.m */,
 				9D905827138ED4690032871B /* CommBoxViewController.h */,
 				9D905828138ED4690032871B /* CommBoxViewController.m */,
 				9D905829138ED4690032871B /* CommBoxViewController.xib */,
@@ -625,6 +649,11 @@
 				9D6DC82F139827E2002F8ECB /* SettingsViewController.m in Sources */,
 				9D9AA8D0139922C6005B1581 /* EditableValueCell.m in Sources */,
 				9D9AA8D513994873005B1581 /* SignatureCaptureViewController.m in Sources */,
+				9D9AA8D913994A11005B1581 /* SignatureCaptureView.m in Sources */,
+				9D9AA8DC139A8DBC005B1581 /* Activity.m in Sources */,
+				9D901F9F139A95AB00CC9A7B /* Location.m in Sources */,
+				9D901FA3139A981B00CC9A7B /* ItemPositionViewController.m in Sources */,
+				9D901FA6139A982800CC9A7B /* Position.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

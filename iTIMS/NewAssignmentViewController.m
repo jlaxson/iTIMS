@@ -11,7 +11,8 @@
 #import "ItemLocationViewController.h"
 #import "ItemActivityViewController.h"
 #import "AssignmentViewController.h"
-
+#import "SignatureCaptureViewController.h"
+#import "ItemPositionViewController.h"
 #import "TextTableCell.h"
 
 @implementation NewAssignmentViewController
@@ -55,6 +56,7 @@
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
     UIBarButtonItem *button = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSave target:self action:@selector(saveAssignment)];
+    button.enabled = NO;
     self.navigationItem.rightBarButtonItem = button;
     self.title = @"Assign";
     [button release];
@@ -93,12 +95,23 @@
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 
+- (void)validate
+{
+    BOOL valid = YES;
+    valid = valid && [self.assignment.activity length] > 0;
+    valid = valid && [self.assignment.position length] > 0;
+    valid = valid && [self.assignment.location length] > 0;
+    valid = valid && [self.assignment.name length] > 0;
+    
+    self.navigationItem.rightBarButtonItem.enabled = valid;
+}
+
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     // Return the number of sections.
-    return 2;
+    return 3;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -109,6 +122,8 @@
             return 2;
         case 1:
             return 4;
+        case 2:
+            return 1;
     }
     return 0;
 }
@@ -127,7 +142,7 @@
             tcell.textField.autocorrectionType = UITextAutocorrectionTypeNo;
 #endif
             tcell.textField.autocapitalizationType = UITextAutocapitalizationTypeWords;
-            
+            tcell.textField.delegate = self;
             cell = tcell;
             
         } else if ([ident isEqualToString:@"ValueCell"]) {
@@ -145,6 +160,7 @@
     
     if (indexPath.section == 0) {
         cell = [self cellForIdentifier:@"TitleCell"];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
         if (indexPath.row == 0) {
             cell.textLabel.text = item.referenceNumber;
         } else if (indexPath.row == 1) {
@@ -167,6 +183,12 @@
             cell.textLabel.text = @"Location";
             cell.detailTextLabel.text = self.assignment.location;
         }
+    } else if (indexPath.section == 2) {
+        if (indexPath.row == 0) {
+            cell = [self cellForIdentifier:@"ValueCell"];
+            cell.textLabel.text = @"Capture Signature";
+            cell.accessoryType = self.assignment.signatureImage ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryDisclosureIndicator;
+        }
     }
     
     
@@ -176,6 +198,17 @@
     return cell;
 }
 
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
+{
+    switch (section) {
+        case 0:
+            return @"Item";
+        case 1:
+            return @"Assignment";
+    }
+    return nil;
+}
+
 #pragma mark - Table view delegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
@@ -183,21 +216,42 @@
     if (indexPath.section == 1) {
         if (indexPath.row == 1) {
             ItemActivityViewController *vc = [[ItemActivityViewController alloc] initWithStyle:UITableViewStyleGrouped];
-            vc.completedAction = ^(ItemActivityViewController *pvc, NSString *pos) {
-                self.assignment.activity = pos;
+            vc.completedAction = ^(ItemActivityViewController *pvc, Activity *act) {
+                self.assignment.activity = act.code;
+                [self validate];
                 [self.tableView reloadData];
             };
             [self.navigationController pushViewController:vc animated:YES];
+            [vc release];
         } else if (indexPath.row == 2) {
-            
+            ItemPositionViewController *vc = [[ItemPositionViewController alloc] initWithStyle:UITableViewStyleGrouped];
+            vc.completedAction = ^(ItemPositionViewController *pvc, Position *pos) {
+                self.assignment.position = pos.code;
+                [self.tableView reloadData];
+                [self validate];
+                [self.navigationController popViewControllerAnimated:YES];
+            };
+            [self.navigationController pushViewController:vc animated:YES];
+            [vc release];
         } else if (indexPath.row == 3) {
             ItemLocationViewController *vc = [[ItemLocationViewController alloc] initWithStyle:UITableViewStyleGrouped];
-            vc.completedAction = ^(ItemLocationViewController *lvc, NSString *loc) {
-                self.assignment.location = loc;
+            vc.completedAction = ^(ItemLocationViewController *lvc, Location *loc) {
+                self.assignment.location = loc.code;
+                [self validate];
                 [self.tableView reloadData];
             };
             [self.navigationController pushViewController:vc animated:YES];
+            [vc release];
         }
+    } else if (indexPath.section == 2) {
+        SignatureCaptureViewController *vc = [[SignatureCaptureViewController alloc] initWithNibName:@"SignatureCaptureViewController" bundle:nil];
+        vc.completionHandler = ^(SignatureCaptureViewController *vc, UIImage *image) {
+            self.assignment.signatureImage = image;
+            [self.tableView reloadData];
+            [self.navigationController popViewControllerAnimated:YES];
+        };
+        [self.navigationController pushViewController:vc animated:YES];
+        [vc release];
     }
 }
 
@@ -235,6 +289,18 @@
         
         [nc setViewControllers:a animated:YES];
     }
+}
+
+- (void)textFieldDidEndEditing:(UITextField *)textField
+{
+    self.assignment.name = textField.text;
+    [self validate];
+}
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+    [textField resignFirstResponder];
+    return NO;
 }
 
 @end

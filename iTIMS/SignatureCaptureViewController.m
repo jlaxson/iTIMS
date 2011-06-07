@@ -7,15 +7,18 @@
 //
 
 #import "SignatureCaptureViewController.h"
-
+#import "SignatureCaptureView.h"
 
 @implementation SignatureCaptureViewController
+
+@synthesize doneButton, signatureView, completionHandler;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
+        self.title = @"Signature";
     }
     return self;
 }
@@ -35,10 +38,16 @@
 
 #pragma mark - View lifecycle
 
+- (void)viewDidAppear:(BOOL)animated
+{
+    [[UIDevice currentDevice] setOrientation:UIDeviceOrientationLandscapeLeft];
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+    self.navigationItem.rightBarButtonItem = self.doneButton;
 }
 
 - (void)viewDidUnload
@@ -51,7 +60,24 @@
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
     // Return YES for supported orientations
-    return (interfaceOrientation == UIInterfaceOrientationPortrait);
+    return UIInterfaceOrientationIsLandscape(interfaceOrientation);
+}
+
+- (void)doneButton:(id)sender
+{
+    UIActionSheet *sheet = [[UIActionSheet alloc] initWithTitle:@"Save Signature?" delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:@"Save" otherButtonTitles:@"Clear", nil];
+    [sheet showInView:self.view];
+}
+
+- (void)actionSheet:(UIActionSheet *)actionSheet didDismissWithButtonIndex:(NSInteger)buttonIndex
+{
+    if (buttonIndex == 0) {
+        if (self.completionHandler) {
+            self.completionHandler(self, [signatureView image]);
+        }
+    } else if (buttonIndex == 1) {
+        [signatureView clear];
+    }
 }
 
 @end

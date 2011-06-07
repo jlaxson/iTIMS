@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 
 
-@interface NewAssignmentViewController : UITableViewController <UIActionSheetDelegate> {
+@interface NewAssignmentViewController : UITableViewController <UIActionSheetDelegate, UITextFieldDelegate> {
     
 }
 

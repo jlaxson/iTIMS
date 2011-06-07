@@ -11,10 +11,11 @@
 #import "ItemAreaViewController.h"
 #import "ItemLocationViewController.h"
 #import "ItemActivityViewController.h"
+#import "ItemPositionViewController.h"
 
 @implementation LocationViewController
 
-@synthesize location, area, position, onComplete;
+@synthesize location, area, activity, position, onComplete;
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -122,13 +123,13 @@
             break;
             
         case 1:
-            cell.textLabel.text = @"Position";
-            cell.detailTextLabel.text = self.position;
+            cell.textLabel.text = @"Activity";
+            cell.detailTextLabel.text = self.activity;
             break;
             
         case 2:
-            cell.textLabel.text = @"Area";
-            cell.detailTextLabel.text = self.area;
+            cell.textLabel.text = @"Position";
+            cell.detailTextLabel.text = self.position;
             break;
             
         default:
@@ -147,10 +148,10 @@
             return @"Location";
             
         case 1:
-            return @"Position";
+            return @"Activity";
             
         case 2:
-            return @"Area";
+            return @"Position";
             
         default:
             return @"Error";
@@ -164,21 +165,35 @@
     UIViewController *vc;
     switch (indexPath.section) {
         case 0:
-            vc = [[ItemLocationViewController alloc] initWithStyle:UITableViewStyleGrouped];
+        {
+            ItemLocationViewController *lvc = [[ItemLocationViewController alloc] initWithStyle:UITableViewStyleGrouped];
+            lvc.completedAction = ^(ItemLocationViewController *lvc, Location *loc) {
+                self.location = loc.code;
+            };
+            vc = lvc;
+        }
             break;
         case 1:
         {
             
             ItemActivityViewController *pvc = [[ItemActivityViewController alloc] initWithStyle:UITableViewStyleGrouped];
-            pvc.completedAction = ^(ItemActivityViewController *pvc, NSString *pos) {
-                self.position = pos;
+            pvc.completedAction = ^(ItemActivityViewController *pvc, Activity *act) {
+                self.activity = act.code;
                 //[self reloadData];
             };
             vc = pvc;
         }
             break;
         case 2:
-            vc = [[ItemAreaViewController alloc] initWithStyle:UITableViewStyleGrouped];
+        {
+            
+            ItemPositionViewController *pvc = [[ItemPositionViewController alloc] initWithStyle:UITableViewStyleGrouped];
+            pvc.completedAction = ^(ItemPositionViewController *pvc, Position *pos) {
+                self.position = pos.code;
+                [self.navigationController popViewControllerAnimated:YES];
+            };
+            vc = pvc;
+        }   
             break;
     }
     [self.navigationController pushViewController:vc animated:YES];

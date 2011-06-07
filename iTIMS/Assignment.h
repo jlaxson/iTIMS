@@ -26,5 +26,6 @@
 @property (nonatomic, retain) NSString * returnBy;
 @property (nonatomic, retain) NSString * comment;
 @property (nonatomic, retain) Item *item;
+@property (nonatomic, retain) UIImage * signatureImage;
 
 @end

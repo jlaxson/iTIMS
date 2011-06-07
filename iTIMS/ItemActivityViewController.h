@@ -10,7 +10,7 @@
 
 @class ItemActivityViewController;
 
-typedef void (^ActivityCompletionHandler)(ItemActivityViewController *vc, NSString *position) ;
+typedef void (^ActivityCompletionHandler)(ItemActivityViewController *vc, Activity *position) ;
 
 @interface ItemActivityViewController : UITableViewController {
     NSDictionary *positions;
@@ -19,7 +19,7 @@ typedef void (^ActivityCompletionHandler)(ItemActivityViewController *vc, NSStri
 
 - (id)initWithCompletionHandler:(ActivityCompletionHandler)handler;
 
-@property (copy) NSString *group, *activity;
+@property (retain) Activity *activity;
 @property (copy) ActivityCompletionHandler completedAction;
 
 @end

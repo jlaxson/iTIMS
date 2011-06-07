@@ -15,5 +15,8 @@
 
 @property (nonatomic, retain) NSString *drName;
 @property (nonatomic, retain) NSString *drNumber;
+@property (nonatomic, retain) NSArray *positions;
+@property (nonatomic, retain) NSDictionary *groups;
+@property (nonatomic, retain) NSArray *locations;
 
 @end

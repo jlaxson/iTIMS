@@ -140,6 +140,32 @@
           padding: 5px;
         }
         
+        #signatureContainer {
+            position: relative;
+            top: -.5in;
+            z-index: -100;
+        }
+        
+        #signatureImage {
+            width: 2in;
+            height: 1.33in;
+            position: absolute;
+        }
+        
+        #signatureName {
+            position: absolute;
+            top: .95in;
+            left: 0;
+            height: 2em;
+            width: 2in;
+            border-top: 1px solid black;
+            padding: 1em;
+        }
+        
+        #signatureDate{
+            float: right;
+        }
+        
     </style>
 </head>
 <body>
@@ -170,8 +196,8 @@
             </tr>
             <tr>
                 <td class="desc">{{assignment.item.type.desc}}: {{assignment.item.referenceNumber}}</td>
-                <td class="issued">{{assignment.checkoutTime | date_format: "MM'/'d"}}</td>
-                <td class="returned">{{assignment.returnTime | date_format: "MM'/'d"}}</td>
+                <td class="issued">{{assignment.checkoutTime | date_format: "M'/'d"}}</td>
+                <td class="returned">{{assignment.returnTime | date_format: "M'/'d"}}</td>
             </tr>
             {% for accessory in assignment.item.type.accessories %}
             <tr>
@@ -201,9 +227,16 @@
         </p>
     </div>
     </div>
+    {% if !signaturePath %}
     <div id="signature">
         <div id="signatureBlank"></div>
         <span>Signature Of Recipient</span><span class="right" style="width: 1in">Date</span>
     </div>
+    {% else %}
+    <div id="signatureContainer">
+        <img src="{{signaturePath}}" id="signatureImage"/>
+        <p id="signatureName">{{assignment.name}}<span id="signatureDate">{{assignment.checkoutTime | date_format: "M'/'d'/'yyyy"}}</span></p>
+    </div>
+    {% /if %}
 </body>
 </html>

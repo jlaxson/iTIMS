@@ -13,7 +13,7 @@
     UIBarButtonItem *closeButton;
 }
 
-@property (copy) NSString *location, *area, *position;
+@property (retain) NSString *location, *area, *activity, *position;
 
 @property (copy) void (^onComplete)(LocationViewController *vc);
 

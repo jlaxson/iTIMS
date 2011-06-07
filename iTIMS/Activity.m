@@ -1,17 +1,17 @@
 //
-//  DROInfo.m
+//  Activity.m
 //  iTIMS
 //
-//  Created by John Laxson on 5/31/11.
+//  Created by John Laxson on 6/4/11.
 //  Copyright 2011 SOS Technologies, Inc. All rights reserved.
 //
 
-#import "DROInfo.h"
+#import "Activity.h"
 
 
-@implementation DROInfo
+@implementation Activity
 
-@synthesize drName, drNumber, positions, groups, locations;
+@synthesize code, name, group, activities, index;
 
 - (id)init
 {

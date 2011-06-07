@@ -10,6 +10,8 @@
 #import "CSVParser.h"
 #import "ItemViewController.h"
 #import "PSQLDatasource.h"
+#import "SignatureCaptureViewController.h"
+#import "NewAssignmentViewController.h"
 
 #define RESET_CD 0
 
@@ -36,17 +38,20 @@
     self.window.rootViewController = self.navigationController;
     [self.window makeKeyAndVisible];
     
-    [[NSUserDefaults standardUserDefaults] registerDefaults:[NSDictionary dictionaryWithObject:@"IT" forKey:@"UserInitials"]];
+    [[NSUserDefaults standardUserDefaults] registerDefaults:[NSDictionary dictionaryWithObject:@"iT" forKey:@"UserInitials"]];
     
 #if RESET_CD
     [self loadData];
 #endif
 #if TARGET_IPHONE_SIMULATOR 
-    //ItemViewController *vc = [[ItemViewController alloc] initWithStyle:UITableViewStyleGrouped];
-    //Item *item = [self.datasource findItemByReference:@"571-205-3330"];
-    //vc.item = item;
-    //[self.navigationController pushViewController:vc animated:YES];
+    ItemViewController *vc = [[ItemViewController alloc] initWithStyle:UITableViewStyleGrouped];
+    Item *item = [self.datasource findItemByReference:@"571-205-3330"];
+    vc.item = item;
+    [self.navigationController pushViewController:vc animated:YES];
+    
 #endif
+    //SignatureCaptureViewController *svc = [[SignatureCaptureViewController alloc] init];
+    //[self.navigationController pushViewController:svc animated:YES];
     return YES;
 }
 

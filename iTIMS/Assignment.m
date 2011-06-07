@@ -11,7 +11,7 @@
 
 @implementation Assignment
 
-@synthesize rowNumber, returnBy, returnTime, position, location, checkoutTime, activity, name, checkoutBy, comment, item;
+@synthesize rowNumber, returnBy, returnTime, position, location, checkoutTime, activity, name, checkoutBy, comment, item, signatureImage;
 
 /*
 @dynamic returnTime;

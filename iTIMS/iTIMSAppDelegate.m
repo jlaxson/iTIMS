@@ -12,8 +12,13 @@
 #import "PSQLDatasource.h"
 #import "SignatureCaptureViewController.h"
 #import "NewAssignmentViewController.h"
+#import "PGLoginViewController.h"
 
 #define RESET_CD 0
+
+@interface iTIMSAppDelegate (Test) <UIAlertViewDelegate> 
+
+@end
 
 @implementation iTIMSAppDelegate
 
@@ -26,12 +31,35 @@
 @synthesize managedObjectModel=__managedObjectModel;
 @synthesize persistentStoreCoordinator=__persistentStoreCoordinator;
 
-@synthesize datasource, droInfo;
+@synthesize datasource=__datasource, droInfo;
+
+- (void)setDatasource:(id<TIMSDatasource, NSObject>)datasource
+{
+    [__datasource release];
+    __datasource = [datasource retain];
+    self.droInfo = [__datasource loadDROInfo];
+}
+
+- (void)handleConnectionError:(NSException *)e
+{
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Connection Error" message:[e description] delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil];
+    [alert show];
+    [alert release];
+}
+
+- (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex
+{
+    // try to reconnect first, if that fails present the dialog
+    BOOL ok = [self.datasource resetConnection];
+    if (!ok) {
+        PGLoginViewController *vc = [[PGLoginViewController alloc] initWithNibName:@"PGLoginViewController" bundle:nil];
+        [self.navigationController presentModalViewController:vc animated:YES];
+        [vc release];
+    }
+}
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    self.datasource = [[PSQLDatasource alloc] init];
-    self.droInfo = [self.datasource loadDROInfo];
     
     // Override point for customization after application launch.
     // Add the navigation controller's view to the window and display.
@@ -40,14 +68,19 @@
     
     [[NSUserDefaults standardUserDefaults] registerDefaults:[NSDictionary dictionaryWithObject:@"iT" forKey:@"UserInitials"]];
     
+    
+    PGLoginViewController *vc = [[PGLoginViewController alloc] initWithNibName:@"PGLoginViewController" bundle:nil];
+    [self.navigationController presentModalViewController:vc animated:YES];
+    [vc release];
+    
 #if RESET_CD
     [self loadData];
 #endif
 #if TARGET_IPHONE_SIMULATOR 
-    ItemViewController *vc = [[ItemViewController alloc] initWithStyle:UITableViewStyleGrouped];
-    Item *item = [self.datasource findItemByReference:@"571-205-3330"];
-    vc.item = item;
-    [self.navigationController pushViewController:vc animated:YES];
+    //ItemViewController *vc = [[ItemViewController alloc] initWithStyle:UITableViewStyleGrouped];
+    //Item *item = [self.datasource findItemByReference:@"571-205-3330"];
+    //vc.item = item;
+    //[self.navigationController pushViewController:vc animated:YES];
     
 #endif
     //SignatureCaptureViewController *svc = [[SignatureCaptureViewController alloc] init];

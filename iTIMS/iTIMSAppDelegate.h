@@ -22,11 +22,12 @@
 @property (nonatomic, retain, readonly) NSManagedObjectModel *managedObjectModel;
 @property (nonatomic, retain, readonly) NSPersistentStoreCoordinator *persistentStoreCoordinator;
 
-@property (nonatomic, retain) id<TIMSDatasource> datasource;
+@property (nonatomic, retain) id<TIMSDatasource, NSObject> datasource;
 @property (nonatomic, retain) DROInfo *droInfo;
 
 - (void)saveContext;
 - (NSURL *)applicationDocumentsDirectory;
 //- (Item *)itemByReference:(NSString *)ref;
+- (void)handleConnectionError:(NSException *)e;
 
 @end

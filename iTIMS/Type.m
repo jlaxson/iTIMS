@@ -25,7 +25,8 @@
 
 -  (NSArray *)accessories {
     if (_cachedAccessories == nil) {
-        _cachedAccessories = [[self.rawAccessories componentsSeparatedByString:@"|"] retain];
+        if (!self.rawAccessories) _cachedAccessories = [NSArray array];
+        else _cachedAccessories = [[self.rawAccessories componentsSeparatedByString:@"|"] retain];
     }
     
     return _cachedAccessories;

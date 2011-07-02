@@ -271,10 +271,20 @@
         TextTableCell *nameCell = (TextTableCell *)[self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:1]];
         
         self.assignment.name = nameCell.textField.text;
+        
         [self.item addAssignmentsObject:self.assignment];
         
         iTIMSAppDelegate *app = [[UIApplication sharedApplication] delegate];
-        [app.datasource saveAssignment:self.assignment];
+        
+        @try {
+            [app.datasource saveAssignment:self.assignment];
+        }
+        @catch (NSException *e) {
+            [app handleConnectionError:e];
+            
+            [self.item removeAssignmentsObject:self.assignment];
+            return;
+        }
         
         //[self.navigationController popViewControllerAnimated:NO];
         

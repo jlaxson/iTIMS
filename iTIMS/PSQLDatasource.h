@@ -14,4 +14,6 @@
     NSMutableDictionary *typeCache;
 }
 
+- (id)initWithConnection:(PGSQLConnection *)conn;
+
 @end

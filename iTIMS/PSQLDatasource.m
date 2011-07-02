@@ -29,22 +29,49 @@
         [_connection setUserName:@"tims"];
         [_connection setPassword:@"tims"];
         [_connection connect];
+        
+        if (![_connection isConnected]) {
+            [[NSException exceptionWithName:@"Datasource Error" reason:[_connection lastError] userInfo:nil] raise];
+        }
     }
     
     return self;
 }
 
+- (id)initWithConnection:(PGSQLConnection *)conn
+{
+    self = [super init];
+    if (self) {
+        _connection = [conn retain];
+    }
+    return self;
+}
+
 - (void)dealloc
 {
+    [_connection release]; _connection = nil;
     [super dealloc];
+}
+
+- (BOOL)resetConnection
+{
+    return [_connection reset];
 }
 
 - (DROInfo *)loadDROInfo {
     PGSQLRecordset *results;
     PGSQLRecord *record;
     
-    results = [_connection open:@"SELECT * from \"DR Information\""];
-    
+    @try {
+        results = [_connection open:@"SELECT * from \"DR Information\""];
+    }
+    @catch (NSException *e) {
+        UIAlertView *view = [[UIAlertView alloc] initWithTitle:@"Error" message:[e description] delegate:nil cancelButtonTitle:nil otherButtonTitles:nil];
+        [view show];
+        [view release];
+        return nil;
+    }
+
     record = [results moveFirst];
     
     DROInfo *info = [[DROInfo alloc] init];
@@ -56,6 +83,11 @@
     NSMutableArray *positions = [NSMutableArray array];
     
     results = [_connection open:@"SELECT * FROM \"Position\" ORDER BY \"Postion Number\" asc"];
+    if (!results) {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Database Problem" message:[NSString stringWithFormat:@"An error occurred accessing the database: %@", [_connection lastError]] delegate:nil cancelButtonTitle:nil otherButtonTitles:nil];
+        [alert show];
+        return nil;
+    }
     
     record = [results moveFirst];
     
@@ -111,6 +143,11 @@
     NSMutableArray *locations = [NSMutableArray array];
     
     results = [_connection open:@"SELECT * FROM \"Location\" WHERE \"State\" is not null order by \"ID\" asc"];
+    if (!results) {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Database Problem" message:[NSString stringWithFormat:@"An error occurred accessing the database: %@", [_connection lastError]] delegate:nil cancelButtonTitle:nil otherButtonTitles:nil];
+        [alert show];
+        return nil;
+    }
     
     record = [results moveFirst];
     
@@ -138,7 +175,12 @@
     PGSQLRecordset *results;
     PGSQLRecord *record;
     
-    results = [_connection open:[NSString stringWithFormat:@"SELECT * FROM \"History\" WHERE \"Record Number\"=%@", item.rowNumber]];
+    results = [_connection open:@"SELECT * FROM \"History\" WHERE \"Record Number\"=$1" numberOfArguments:1 withParameters:item.rowNumber];
+    if (!results) {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Database Problem" message:[NSString stringWithFormat:@"An error occurred accessing the database: %@", [_connection lastError]] delegate:nil cancelButtonTitle:nil otherButtonTitles:nil];
+        [alert show];
+        return nil;
+    }
     
     record = [results moveFirst];
     
@@ -185,7 +227,12 @@
     PGSQLRecordset *results;
     PGSQLRecord *record;
     
-    results = [_connection open:[NSString stringWithFormat:@"SELECT * from \"Type\" WHERE \"Type\"='%@'", [self escapeText:name]]];
+    results = [_connection open:@"SELECT * from \"Type\" WHERE \"Type\"=$1" numberOfArguments:1 withParameters:name];
+    if (!results) {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Database Problem" message:[NSString stringWithFormat:@"An error occurred accessing the database: %@", [_connection lastError]] delegate:nil cancelButtonTitle:nil otherButtonTitles:nil];
+        [alert show];
+        return nil;
+    }
     
     if ([results isEOF])
         return nil;
@@ -209,7 +256,13 @@
     PGSQLRecordset *results;
     PGSQLRecord *record;
     
-    results = [_connection open:[NSString stringWithFormat:@"SELECT * from \"Inventory\" WHERE \"Reference Number\" LIKE '%@' OR \"ESN/CAP #\" LIKE '%@'", reference, reference]];
+    results = [_connection open:@"SELECT * from \"Inventory\" WHERE \"Reference Number\" LIKE $1 OR \"ESN/CAP #\" LIKE $1"
+               numberOfArguments:1 withParameters:reference];
+    if (!results) {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Database Problem" message:[NSString stringWithFormat:@"An error occurred accessing the database: %@", [_connection lastError]] delegate:nil cancelButtonTitle:nil otherButtonTitles:nil];
+        [alert show];
+        return nil;
+    }
     
     if ([results isEOF])
         return nil;
@@ -246,7 +299,6 @@
 
 - (void)saveAssignment:(Assignment *)assignment
 {
-    NSString *query;
     if (assignment.rowNumber == nil) {
         [_connection execCommand:@"INSERT INTO \"History\" (\"Record Number\", \"Function\", \"Responsible Individual\", \"Location\", \"Position\", \"Date of Issue\", \"Initials Issued\", \"Date Returned\", \"Initials Returned\", \"Comments\", \"Signature\") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11)"
                numberOfArguments:11
@@ -268,19 +320,18 @@
         assignment.rowNumber = [[results fieldByIndex:0] asNumber];
         [results close];
     } else {
-        NSString *query = [NSString stringWithFormat:@"UPDATE \"History\" SET \"Function\"='%@',  \"Responsible Individual\"='%@', \"Location\"='%@',  \"Position\"='%@', \"Date of Issue\"=%@, \"Initials Issued\"='%@', \"Date Returned\"=%@, \"Initials Returned\"='%@', \"Comments\"='%@' WHERE \"History ID\"=%@ ",
-                 [self escapeText:assignment.activity],
-                 [self escapeText:assignment.name],
-                 [self escapeText:assignment.location],
-                 [self escapeText:assignment.position],
-                 [self formatDateForSQL:assignment.checkoutTime],
-                 [self escapeText:assignment.checkoutBy],
-                 [self formatDateForSQL:assignment.returnTime],
-                 [self escapeText:assignment.returnBy],
-                 [self escapeText:assignment.comment],
-                 assignment.rowNumber];
-        
-        [_connection execCommand:query];
+        [_connection execCommand:@"UPDATE \"History\" SET \"Function\"=$1,  \"Responsible Individual\"=$2, \"Location\"=$3,  \"Position\"=$4, \"Date of Issue\"=$5, \"Initials Issued\"=$6, \"Date Returned\"=$7, \"Initials Returned\"=$8, \"Comments\"=$9 WHERE \"History ID\"=$10 "
+               numberOfArguments:10 
+                  withParameters:assignment.activity,
+                                 assignment.name,
+                                 assignment.location,
+                                 assignment.position,
+                                 assignment.checkoutTime,
+                                 assignment.checkoutBy,
+                                 assignment.returnTime,
+                                 assignment.returnBy,
+                                 assignment.comment,
+                                 assignment.rowNumber ];
     }
 }
 

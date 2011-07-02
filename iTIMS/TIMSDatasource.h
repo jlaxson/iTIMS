@@ -12,6 +12,8 @@
 
 @protocol TIMSDatasource
 
+- (BOOL)resetConnection;
+
 - (DROInfo *)loadDROInfo;
 - (Item *)findItemByReference:(NSString *)reference;
 //- (NSArray *)findAssignmentsForItem:(Item *)item;
